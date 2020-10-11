@@ -29,6 +29,6 @@
   "dependencies": {
     "chunk-progress-webpack-plugin": "^1.2.0",
     "phaser": "^3.24.1",
-    "strand-core": "^1.0.4"
+    "strand-core": "^1.0.5"
   }
 }
