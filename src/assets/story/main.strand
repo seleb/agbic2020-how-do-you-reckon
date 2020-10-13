@@ -1,0 +1,1890 @@
+::start
+<<do this.reset();>>
+<<do this.bg('blank')>>
+<<do this.image('blank')>>
+<<do this.scene.eventText.setFontSize(30)>>
+<<do this.startEyes()>>
+<<print "\u0000">>
+How Do You Reckon?
+
+[[New game|this.stopEyes();this.goto('new-game');this.scene.eventText.setFontSize(this.scene.eventText.fontData.size);]]
+[[Options|this.stopEyes();this.goto('Options');this.scene.eventText.setFontSize(this.scene.eventText.fontData.size);]]
+[[About|this.stopEyes();this.goto('About');this.scene.eventText.setFontSize(this.scene.eventText.fontData.size);]]
+
+::Options
+Text speed: <<print ['SLOW','NORMAL','FAST','INSTANT'][this.speed()]>>
+
+This text will refresh when the settings change to demonstrate the new speed.
+
+<<if this.speed() < 3>>[[Speed up text|this.speed(+1);this.goto('Options')]]<<endif>>
+<<if this.speed() > 0>>[[Slow down text|this.speed(-1);this.goto('Options')]]<<endif>>
+[[Toggle fullscreen|this.scene.scale.toggleFullscreen()]]
+[[Back|this.goto('start')]]
+
+::About
+Made by Sean S. LeBlanc for A Game By Its Cover 2020.
+
+Based on Famicase artwork by Jonah Davidson.
+
+[[Original Famicase|window.open('https://famicase.com/20/softs/017.html', '_blank')]] 
+[[More games|window.open('https://seansleblanc.itch.io', '_blank')]] 
+[[AGBIC2020 entries|window.open('https://itch.io/jam/a-game-by-its-cover-2020/entries', '_blank')]]
+[[Back|this.back()]]
+
+::new-game
+<<do this.bg('bg1')>>
+<<do this.audio('casette')>>
+You're falling.
+<<do this.flag('falling',1);>>
+[[Continue|this.goto('falling')]]
+
+::falling
+<<do this.flag('falling', this.flag('falling')+1)>>
+You continue falling. <<if this.flag('falling') == 25>>You wonder whether lucid dreams are technically conscious or not.<<elseif this.flag('falling') == 9>>You wonder what this dream says about your sub-conscious.<<elseif this.flag('falling') == 6>>You're pretty sure you've seen that same cloud pass by at least six times.<<endif>>
+<<if this.flag('falling') < 25>>[[Continue|this.goto('falling')]]<<endif>>
+<<if this.flag('falling') > 3>>[[Wake up]]<<endif>>
+
+::Wake up
+<<do this.bg('bg9')>>
+You were half-awake already, but the buzz of your alarm cuts through your daze, scattering the quickly fading memories of last night's dreams.
+
+[[Snooze|this.goto('snooze-1')]]
+[[Get up]]
+
+::snooze-1
+<<do this.bg('bg1')>>
+You hit snooze, and pull the covers up over your head. It's just five more minutes.
+<<BR BZZ>>
+<<do this.bg('bg9')>>
+The alarm goes off again.
+
+[[Snooze|this.goto('snooze-2')]]
+[[Get up]]
+
+::snooze-2
+<<do this.bg('bg1')>>
+You're not going back to sleep, you tell yourself as you bury your head back into the pillow.
+<<BR>>
+You're just... getting ready. Getting ready to face the day.
+<<BR BZZ>>
+<<do this.bg('bg9')>>
+The alarm goes off again.
+
+[[Snooze|this.goto('snooze-3')]]
+[[Get up]]
+
+::snooze-3
+You go to hit the snooze again, but it only buzzes twice then stops.
+<<BR>>
+Just a notification; is someone messaging you?
+
+[[Check the notification]]
+[[Ignore it]]
+[[Get up]]
+
+::Check the notification
+It's a recommendation to read an article one of your friends spent at least three seconds engaged with.
+
+[[Read the article]]
+[[Ignore it]]
+[[Get up]]
+
+::Read the article
+You try to load the article, but it just takes you to the index of an aggregator site, and your view is promptly blocked with a call to subscribe to their newsletter.
+
+[[Continue|this.goto('Ignore it')]]
+
+::Ignore it
+Whatever it is, you regret waking up for it.
+
+[[Continue|this.goto('Get up')]]
+
+::Get up
+You've been putting it off for too long: you get out of bed.
+<<BR>>
+You check the time.
+<<BR "Oh.">>
+You're late.
+<<BR>>
+You're working an early shift today, and you'd be late even by your normal schedule.
+<<BR>>
+You hurry through your morning routine, skip breakfast, and rush out.
+<<BR>>
+You half speedwalk, half jog to the train station.
+[[Continue|this.goto('train-station')]]
+
+::train-station
+<<do this.bg('bg14')>>
+You arrive just in time to see your train pulling out of the tunnel.
+<<BR>>
+It's not the end of the world; it comes pretty frequently, but looks like you're going to be even later than you thought.
+<<BR Wait>>
+You wait at the station.
+<<BR>>
+It's as crowded and noisy as ever, despite a car just having left.
+<<BR>>
+You continue waiting at the station.
+<<BR>>
+You consider sending a message saying you'll be late, but decide to take your chances with just showing up.
+<<BR>>
+If no one noticed, and you don't let on, then you'll be in the clear.
+<<BR>>
+You continue waiting at the station.
+<<BR>>
+You wonder if anyone would notice if you never showed up.
+<<BR>>
+If you just turned around and went home right now.
+<<BR>>
+You hear an approaching roar, and see the lights of the next car coming through the tunnel.
+<<BR>>
+The train scrapes in, and slows to a stop at the station.
+<<BR>>
+You take a step back instinctively, waiting for the initial rush of departures before trying to enter yourself.
+<<BR>>
+No one comes out.
+<<BR>>
+It's strange, but you are running late: maybe you just missed the rush?
+
+[[Board]]
+[[Wait|this.goto('wait1')]]
+
+::wait1
+You wait for a few seconds.
+<<BR>>
+You notice how quiet it is.
+<<BR>>
+The fluorescent lights flicker above.
+
+[[Board]]
+[[Wait|this.goto('wait2')]]
+
+::wait2
+You wait a few more seconds.
+<<BR>>
+There's a soft ding, which signals that the doors will be closing in the next few seconds.
+<<BR>>
+No one has gotten on or off the car in front of you since it arrived.
+
+[[Board]]
+[[Wait|this.flag('leave',true);this.goto('Board')]]
+
+::Board
+<<if this.flag('leave')>>You decide to wait another couple seconds before doing anything else, then<<else>>You take a couple steps, but before you even reach the doors you<<endif>> feel a shove, accompanied by a muffled "hurry it up" as someone pushes you in from behind as they rush to board themselves.
+<<BR>>
+<<do this.bg('bg7')>>
+As if on cue, the doors close behind you.
+<<BR>>
+The train car is almost empty. You could count the passengers on a single hand, yourself and the stranger who pushed through you included.
+
+[[Confront the rude stranger]]
+[[Take a seat]]
+[[Look around the car]]
+
+::Confront the rude stranger
+You think of something appropriately confrontational to say, then turn to face the stranger.
+<<BR>>
+Wait...
+<<BR>>
+What's wrong with their face?
+
+[[Continue|this.goto('buzz')]]
+
+::Take a seat
+Ignoring the other passengers, you take a seat.
+
+[[Continue|this.goto('Look around the car')]]
+
+
+::Look around the car
+Something feels off.
+<<BR>>
+You take a closer look at your surroundings.
+<<BR>>
+Did you get on the wrong train somehow?
+<<BR>>
+You check the screen hanging from the top by the door, where a dot matrix display slowly cycles through the stops.
+<<BR>>
+It's busted, of course.
+<<BR>>
+You look at the other passengers, to see if you recognize any of them from your normal route.
+<<BR>>
+Then you notice it.
+[[Continue|this.goto('buzz')]]
+
+::buzz
+<<do this.image('square2')>>
+Is that a mask?
+<<BR>>
+No, it's too big.
+<<BR>>
+You feel a mild headache coming on.
+<<BR>>
+<<do this.image('blank')>>
+Looking around, you see they're not alone.
+<<BR>>
+<<do this.image('ex')>>
+Everyone on the train seems to be wearing something similar, a variety of geometric shapes where their heads should be.
+<<BR>>
+<<do this.image('blank')>>
+Is there some sort of convention going on?
+<<BR>>
+You feel like you need to sit down.
+<<BR>>
+You realize you already are.
+<<BR>>
+"Are you alright?"
+<<BR>>
+One of them is talking to you.
+<<BR>>
+<<do this.image('ex2')>>
+"You look a little pale."
+
+[["I'm freaking out."]]
+[["I'm not freaking out."|this.goto('"I\'m ok."')]]
+[["I might be freaking out."|this.goto('"I\'m freaking out."')]]
+[["I'm ok."]]
+
+::"I'm ok."
+"Hm... if you say so."
+<<BR>>
+They give you a look, but you have a really difficult time focusing on what it could possibly mean.
+[[Continue|this.goto('"I\'m freaking out."')]]
+
+::"I'm freaking out."
+"The ride can be a bit rough if you're not used to it."
+<<BR>>
+"We're not quite there yet, but it won't be much longer."
+<<BR>>
+You feel ill.
+<<BR>>
+<<do this.bg('bg1')>>
+You close your eyes and hope for it to pass.
+<<BR>>
+<<do this.bg('bg7')>>
+
+[[Continue|this.goto('form')]]
+
+::form
+You don't recognize the stop.
+<<BR>>
+Everyone gets off.
+
+[[Get off]]
+[[Wait|this.goto('wait-on-train')]]
+
+::wait-on-train
+You sit in your seat.
+
+[[Get off]]
+[[Wait|this.goto('wait-on-train')]]
+
+::Get off
+You get up, and get off the train.
+<<BR>>
+There's no one on the platform.
+<<BR>>
+There's a set of double doors leading out of the station.
+<<BR Open the doors>>
+<<do this.bg('bg4')>>
+They lead to a waiting room of some sort.
+<<BR>>
+There are a few seats, a little reception desk, and another glass door leading to a stairwell.
+
+[[Go up the stairs]]
+[[Go back to the train]]
+[[Sit down]]
+
+::Sit down
+You take a seat.
+<<BR>>
+No one seems to be paying you any mind.
+
+[[Go up the stairs]]
+[[Go back to the train]]
+[[Go up to the desk]]
+
+::Go up to the desk
+<<do this.image('triangle2')>>
+You approach the figure at the desk.
+[[Continue|this.goto('form2')]]
+
+::Go back to the train
+"Excuse me!"
+<<BR>>
+The figure at the desk is calling out to you.
+<<BR>>
+<<do this.image('triangle2')>>
+"You can't go back that way!"
+<<BR>>
+"If you want to leave, you have to sign in, and head up the stairs like everyone else."
+[[Continue|this.goto('form2')]]
+
+::Go up the stairs
+"Excuse me!"
+<<BR>>
+The figure at the desk is calling out to you.
+<<BR>>
+<<do this.image('triangle2')>>
+"You can't leave without signing in!"
+[[Continue|this.goto('form2')]]
+
+::form2
+They gesture at a stack of forms, clearly intending for you to take one.
+<<BR>>
+<<do this.image('blank')>>
+You walk over and take a form.
+<<BR>>
+Giving it a quick look at the form, it seems pretty straightforward, so you grab a pen and start filling it out.
+<<BR>>
+Name (preferred):
+<<BR Fill it out>>
+Age:
+<<BR Fill it out>>
+Date of birth:
+<<BR Fill it out>>
+Place of residence:
+<<BR Fill it out>>
+Affiliation:
+<<BR Uh>>
+You skip that one and make a mental note to come back.
+<<BR>>
+Temperament:
+<<BR Hm>>
+Looking through the rest of the form, there's roughly half a page's worth of blank spaces that you have no idea how to fill out.
+
+[[Look for instructions]]
+[[Ask for help]]
+[[Hand it in without finishing]]
+
+::Look for instructions
+You flip the form over, scan the page for any fine print, give a cursory glance around the office space, but there doesn't seem to be anything that would hint at what you're supposed to be doing here.
+
+[[Ask for help]]
+[[Hand it in without finishing]]
+
+::Ask for help
+<<do this.image('triangle2')>>
+You approach the figure at the desk. They seem to be fiddling with something below your line of sight, and pay you no mind.
+
+[[Wait expectantly]]
+[[Get their attention]]
+
+::Wait expectantly
+You put on your best "I am in need of assistance" face.
+
+It's mostly just your regular face, with slightly more direct eye contact.
+<<BR>>
+You try to catch their gaze, but it's a bit difficult to judge.
+<<BR>>
+They don't notice, and continue fiddling.
+
+[[Get their attention]]
+
+::Get their attention
+You clear your throat. They pause whatever they were doing and look your way.
+
+"Can I help you?"
+<<BR>>
+You explain that you've filled out what you can, but that some of these fields are a bit less than clear.
+<<BR>>
+They give you a stranger than usual look, before something apparently clicks.
+
+"Ah, could I see that for a moment?"
+<<BR>>
+They take the form from your hands without waiting for a response.
+<<BR>>
+"Ah yes, you're the one who missed orientation, huh?"
+
+"Hmm, we're already running late, so let's hurry this along."
+<<BR>>
+They start filling out your form, occasionally glancing up at you, then returning back to scratch down more answers.
+<<BR>>
+They pause for a second.
+
+"What's your favourite colour?"
+
+[["Red"|this.goto('believer1')]]
+[["Orange"|this.goto('believer1')]]
+[["Yellow"|this.goto('believer1')]]
+[["Green"|this.goto('believer1')]]
+[["Blue"|this.goto('believer1')]]
+[["Purple"|this.goto('believer1')]]
+[["It depends"|this.goto('believer1')]]
+
+::believer1
+They nod, and fill out another box.
+
+You are 100% certain "favourite colour" was not one of the fields.
+<<BR>>
+"Do you consider yourself a believer?"
+
+[["A believer?"|this.flag('in','in ');this.goto('believer2')]]
+[["In what?"|this.flag('in','');this.goto('believer2')]]
+
+::believer2
+They gesture around vaguely, as if to say "<<print this.flag('in')>>all this", but they do not elaborate.
+
+[["Yes"|this.goto('believer3')]]
+[["No"|this.goto('believer3')]]
+[["No" (lie)|this.flag('lie','no');this.goto('lie')]]
+[["Yes" (lie)|this.flag('lie','yes');this.goto('lie')]]
+[["I don't know"|this.goto('believer3')]]
+[["I don't know" (lie)|this.flag('lie','idk');this.goto('lie')]]
+
+::lie
+They sigh, and click the pen twice.
+
+"Please don't lie on your official documentation."
+<<BR>>
+"It just causes problems for everyone involved."
+
+"So again, do you consider yourself a believer?"
+
+[[Insist]]
+<<if this.flag('lie') !== 'yes'>>[["Yes"|this.goto('believer3')]]<<endif>>
+<<if this.flag('lie') !== 'no'>>[["No"|this.goto('believer3')]]<<endif>>
+<<if this.flag('lie') !== 'idk'>>[["I don't know"|this.goto('believer3')]]<<endif>>
+
+::Insist
+<<do this.flag('lied-papers', true)>>
+You repeat your answer, and insist that you're not lying, honest.
+
+[[Continue|this.goto('believer3')]]
+
+::believer3
+They look at you for a long while without saying anything, then write something down and move on.
+<<BR>>
+They fill out a few more fields without any further questions and deposit the form in a folder.
+
+[[Continue|this.goto('form-done')]]
+
+
+::Hand it in without finishing
+You walk up to the desk and deposit the form next to the empty ones.
+<<BR>>
+You hope there wasn't anything important you missed in there.
+<<do this.flag('skipped-papers', true)>>
+<<BR>>
+<<do this.image('triangle2')>>
+"Thanks."
+
+[[Continue|this.goto('form-done')]]
+
+::form-done
+<<do this.image('triangle2')>>
+"Now just head on up the stairs, take the second door on your right, then head on straight till you're outside."
+<<BR>>
+<<do this.image('blank')>>
+They go back to their fiddling.
+<<BR>>
+You head out the door leading to the stairs.
+<<BR>>
+They are incredibly long.
+<<BR>>
+It's at least three times the number you'd have to walk to get to your floor at work, all in a single straight shot.
+<<BR Mount the stairs>>
+Not having much other choice, you make your way up.
+<<BR>>
+It's slow going.
+<<BR>>
+And tough on the calves.
+<<BR>>
+<<do this.bg('bg11')>>
+But you make it.
+<<BR>>
+No sooner than you've made it to the top, you feel a pat on the back.
+[[Continue|this.goto('reporter-intro')]]
+
+::reporter-intro
+<<do this.image('circle')>>
+"Nice to meet you, kid."
+<<BR>>
+You turn to face the source of disrespected personal space, and see a shortish figure with a jacket of some sort slung over one shoulder.
+<<BR>>
+"Was starting to worry I'd missed you!"
+<<BR>>
+Their face is unsurprisingly nonsensical.
+<<BR>>
+"Luckily for me you're running even later than I am."
+<<BR>>
+"I won't keep you long though; care to give a quote before you're off?"
+<<BR "A quote?">>
+"Yeah."
+
+They pull out a notepad and click a pen expectantly.
+<<BR>>
+"So, about the trial?"
+<<BR "Trial?">>
+"Yes, the trial. Keep up, kid."
+<<BR "What trial?">>
+"Is that a 'no comment', or...?"
+<<BR "What?">>
+"C'mon, work with me kid. If you're going to stonewall, at least do it without wasting my time."
+<<BR "I don't know what you're talking about.">>
+"Hmm."
+<<BR>>
+"Okay, change of plans."
+<<BR>>
+"You got questions for me, kid?"
+
+[[Continue|this.goto('intro-questions')]]
+
+::intro-questions
+They click their pen again.
+
+<<if !this.flag('who-are-you')>>[["Who... are you?"]]<<endif>>
+<<if !this.flag('what-trial')>>[["What trial?"]]<<endif>>
+<<if !this.flag('kid')>>[["Why do you keep calling me 'kid'?"]]<<endif>>
+
+
+::"Who... are you?"
+<<do this.flag('who-are-you', true)>>
+"Ah, sorry<<if !this.flag('nokid')>> kid<<endif>>, I'm press, if that wasn't clear."
+<<BR>>
+They fumble in their pocket and flash a badge to prove their point, though you don't get a clear look.
+[[Continue|this.goto('intro-questions')]]
+
+
+::"Why do you keep calling me 'kid'?"
+<<do this.flag('kid', true)>>
+"Uh, because you are one?"
+
+[["No I'm not?"]]
+[["Fair enough."]]
+[["Well, can you stop it?"]]
+
+::"No I'm not?"
+"Yes you-"
+
+"Okay, look..."
+<<BR>>
+"You know how when you see a kid who's like ten years old..."
+<<BR>>
+"And you think to yourself:"
+
+"'That kid is like ten years old.'"
+<<BR>>
+"Even if the kid is actually eight, or nine, or twelve, or whatever?"
+<<BR "Sure...">>
+"It doesn't really matter how old the kid is, they're basically ten."
+<<BR>>
+"It's like that, except you're a kid who's basically zero."
+[["Makes sense."|this.goto('"Fair enough."')]]
+[["What?"]]
+[["Well, can you stop it?"]]
+
+::"What?"
+"It's pretty simple."
+<<BR>>
+"You could be eight, or nine, or, twenty-three, or sixty-two, or whatever."
+<<BR>>
+"But it's all basically zero, you know what I mean?"
+<<BR>>
+"You'd be dead long before anyone'd bother rounding up, kid."
+
+[["Okay, I get it."|this.goto('"Fair enough."')]]
+[["Well, can you stop it?"]]
+
+
+::"Fair enough."
+"Great."
+[[Continue|this.goto('anyway')]]
+
+::"Well, can you stop it?"
+<<do this.flag('nokid', true)>>
+"Hmph. I guess."
+
+[[Continue|this.goto('anyway')]]
+
+::anyway
+"Anyway..."
+[[Continue|this.goto('intro-questions')]]
+
+
+::"What trial?"
+<<do this.flag('what-trial', true)>>
+Their posture shifts.
+<<BR>>
+"You really don't know?"
+<<BR "Apparently not.">>
+"You're here on jury duty."
+<<BR>>
+You start to ask another question, but they cut you off.
+<<BR>>
+"Look, this is really not my department<<if !this.flag('nokid')>> kid<<endif>>."
+<<BR>>
+"Tell you what: you see that door over there?"
+<<BR>>
+They point out a plain-looking door towards the left side of the hall.
+<<BR>>
+"Take that door, head straight, look for someone who looks like they belong."
+<<BR>>
+"You're already running late, but if you want some answers, that's your best bet<<if !this.flag('nokid')>> kid<<endif>>.
+<<BR>>
+"I'm late too, so I'll catch you later."
+<<BR>>
+<<do this.image('blank')>>
+They give a curt wave, and then they're off.
+[[Continue|this.goto('devices')]]
+
+::devices
+<<do this.bg('bg11')>>
+You're left to your own devices.
+
+<<if !this.flag('info')>>[[Take the door to the left]]<<endif>>
+[[Head outside]]
+<<if !this.flag('station')>>[[Head back to the station]]<<endif>>
+
+::Take the door to the left
+<<do this.flag('info', true)>>
+You take the reporter's advice, and head down the hall to the left.
+<<BR>>
+You pass by a number of windows as you walk through the hall.
+<<BR>>
+You're surprised to see that you're on the ground floor.
+<<BR>>
+You would've guessed you'd be multiple floors above ground based on the stairs.
+<<BR>>
+Before you can ponder the geometry of it further, you reach the end of the hall, which opens up into a small room.
+<<BR>>
+<<do this.bg('bg3')>>
+The room is poorly lit, but you can roughly make out a single figure in the darkness.
+<<BR>>
+On seeing you enter, they flick a switch and an extra bulb flickers to life.
+<<BR>>
+<<do this.image('cross')>>
+They appear to be a clerk of some sort, surrounded by cabinets and stacks of file folders.
+<<BR>>
+Their suit is impressively ill-fitting: it somehow appears to be both too large and too small for their figure.
+<<BR>>
+"Can I help you?"
+[[Continue|this.goto('info-questions')]]
+
+::info-questions
+<<if !this.flag('tie')>><<do this.flag('tie',true)>>They fidget with their tie, but it doesn't seem to be out of nervousness: it is a persistent, methodological fidget.<<else>><<if Math.random() < 0.3>>They straighten their tie.<<elseif Math.random() > 0.5>>They put a crook in their tie.<<else>>They sigh.<<endif>><<endif>>
+
+<<if !this.flag('about-reporter')>>[["A reporter sent me here?"]]<<endif>>
+<<if !this.flag('about-trial')>>[["What's all this about a trial?"]]<<endif>>
+<<if this.flag('about-trial') || this.flag('about-home') && !this.flag('about-orientation')>>[["What orientation?"]]<<endif>>
+<<if this.flag('about-orientation') && !this.flag('about-orientation2')>>[["Can I get an orientation?"]]<<endif>>
+<<if !this.flag('about-home')>>[["Can you tell me how to get home?"]]<<endif>>
+[["Nevermind."]]
+
+::"Can you tell me how to get home?"
+<<do this.flag('about-home', true)>>
+"You'd have to ask someone from the departures department."
+<<if !this.flag('about-orientation')>>[[Continue|this.goto('orientation')]]<<else>>[[Continue|this.goto('orientation2')]]<<endif>>
+
+::"A reporter sent me here?"
+<<do this.flag('about-reporter', true)>>
+"A reporter?"
+<<BR>>
+"Well you can tell your boss that whether they do it themselves, or send an assistant to do it for them, someone still needs to fill out the appropriate requisitions."
+<<BR "No, I'm just here to ask some questions.">>
+"Reporters are fond of saying that, aren't they?"
+<<BR>>
+"Ask if you must, but I'm certainly not signing any releases."
+[[Continue|this.goto('info-questions')]]
+
+::"What's all this about a trial?"
+<<do this.flag('about-trial', true)>>
+"Couldn't say; I don't follow the hearings, personally."
+<<if !this.flag('about-orientation')>>[[Continue|this.goto('orientation')]]<<else>>[[Continue|this.goto('orientation2')]]<<endif>>
+
+::orientation
+"Was this not covered in your orientation?"
+[[Continue|this.goto('info-questions')]]
+
+::orientation2
+"This should be covered in your orientation."
+[[Continue|this.goto('info-questions')]]
+
+::"What orientation?"
+<<do this.flag('about-orientation', true)>>
+"The one you were given this morning?"
+<<BR "I never got one.">>
+"I can guarantee you that orientation was delivered to all in attendance today."
+<<BR>>
+"If you did not receive orientation, it naturally follows that you were not in attendance."
+<<BR>>
+"Hence, I can only assume you're trying to find excuses for what is clearly the fault of your own tardiness."
+[[Continue|this.goto('info-questions')]]
+
+::"Can I get an orientation?"
+<<do this.flag('about-orientation2', true)>>
+"Of course you can."
+<<BR>>
+They stand in silence.
+<<BR>>
+You wait for them to continue, but they seem to be doing the same.
+<<BR "Well?">>
+"Oh, did you want ME to do it?"
+<<BR "Well...">>
+"No no no, that's not possible."
+<<BR>>
+"That's not my department."
+<<BR>>
+"If you'd like to schedule a make-up orientation, that I can arrange."
+
+[["Yes please."]]
+[["No thank you."]]
+
+::"Yes please."
+<<do this.flag('scheduled-orientation', true)>>
+They open a drawer and start shuffling things around.
+<<BR>>
+After a moment, they produce a clipboard and starting flipping through it.
+<<BR>>
+"Looks like we're all booked up for today, but there is an opening tomorrow."
+<<BR>>
+"There are hearings till noon, but I'll pencil you in after that."
+[["Thanks."|this.goto('"No thank you."')]]
+
+::"No thank you."
+"Then will that be all?"
+[[Continue|this.goto('info-questions')]]
+
+::"Nevermind."
+<<do this.image('blank')>>
+You decide you've had enough of chatting with this bureaucrat and would be better off figuring things out on your own.
+
+[[Continue|this.goto('devices')]]
+
+::Head back to the station
+<<do this.flag('station', true)>>
+You decide to head back the way you came.
+<<BR>>
+<<do this.bg('bg4')>>
+One arduously long staircase later, you're back in the registration office.
+<<BR>>
+You can see the train through the door windows, still idling in the station.
+<<BR Open the door>>
+The door is locked, and doesn't budge.
+<<BR>>
+<<do this.image('triangle2')>>
+"Excuse me, did you get lost?"
+<<BR>>
+The figure at the desk is watching you intently.
+<<BR>>
+"You must've gotten turned around along the way."
+<<BR>>
+"Best hurry up and get going, you're way behind schedule!"
+<<BR>>
+<<do this.image('blank')>>
+Figuring it'd be better to not cause a scene, you turn around and head back.
+<<BR>>
+Back up the stairs...
+[[Continue|this.goto('devices')]]
+
+::Head outside
+Deciding to follow the first instructions you were given, you make your way to the building's exit, and then head outside.
+<<BR>>
+You're half-expecting to see some sort of nightmare hell-scape, when you leave the doors, but it's surprisingly normal.
+<<BR>>
+If it weren't for the people, you could even confuse it for the downtown you're familiar with.
+<<BR>>
+You didn't exactly get concrete directions, so you pick a direction and start walking.
+[[Continue|this.goto('walking-loop')]]
+
+::walking-loop
+<<do this.bg('bg10')>>
+<<do this.flag('walking', (this.flag('walking') || 0) + 1)>>
+<<print [
+	'', // intentionally empty
+	'As you walk down the streets, you are almost taken aback by how... correct it all is.',
+	'Not that it\'s perfect, but that it\'s as you\'d expect.',
+	'Brick walls, with an exactly random distribution of colour and texture; mortar holes in all the right places.',
+	'Potholes just before every other intersection; caution cones and construction tape (but no workers) at every other.',
+	'The further you walk, the more uncomfortable it makes you.',
+	'Horns honking from the next block over; you\'ve walked about three blocks now, and it\'s always the next block.',
+	'A brisk breeze, smelling vaguely of sweet fish; a tight feeling in your stomach, unsure whether you\'re hungry or nauseous.',
+	'Crosswalks that turn yellow right as you reach them; you\'re never sure whether to jog across or wait for the next light.',
+	'Honeyed dew on every bright blade of grass; hoarfrost everywhere the shade lies.',
+	'The sound of hurried footsteps, directly behind you.',
+][this.flag('walking')]>>
+
+<<if this.flag('walking') < 10>>[[Turn left|this.goto('walking-loop')]]
+[[Turn right|this.goto('walking-loop')]]
+[[Keep walking|this.goto('walking-loop')]]<<endif>>
+<<if this.flag('walking') > 5>>[[Start running]]<<endif>>
+
+::Start running
+You break off into a sprint, and know even without looking back that you aren't the only one.
+<<BR>>
+You keep running. You don't know what's happening, but you know it's not good.
+<<BR>>
+You zig-zag at intersections in an effort to throw off whoever or whatever is tailing you.
+<<BR>>
+You turn a corner, and suddenly feel a rush, like standing up too quickly, or miscounting the last step of a staircase.
+<<BR>>
+<<do this.bg('blank')>>
+The streets around you plummet out of view.
+
+[[Continue|this.goto('hanged')]]
+
+::hanged
+<<do this.bg('bg1')>>
+You're falling.
+<<BR>>
+You continue falling.
+<<BR>>
+No, not falling.
+<<BR>>
+You blink and try to get your bearings.
+<<BR Blink>>
+<<do this.bg('bg13')>>
+You're upside down.
+<<BR Blink>>
+There's something tied tight around your right ankle, holding you up. You try to get a better look, but it's hard to see.
+<<BR Blink>>
+Everything around you is dark, but there's something bright shining in your face. On top of that, you can feel the blood rushing to your head.
+<<BR Blink>>
+"How's it hanging<<if !this.flag('nokid')>>, kid<<endif>>?"
+<<BR Blink>>
+<<do this.image('circleReversed')>>
+You manage to focus your vision enough to make out a familiar face, and they've got a light pointed at yours.
+
+[["Very funny."|this.goto('hanged2')]]
+[["Mind helping me down?"|this.goto('hanged2')]]
+[["Did you do this?"|this.goto('hanged2')]]
+
+::hanged2
+<<do this.image('blank')>>
+They chuckle, and circle behind you.
+
+You try to twist and get a better view, but can't quite counter-balance and end up slowly spinning the opposite way.
+<<BR>>
+"Watch your head."
+
+You barely have enough time to react before a sudden snap leaves you plummeting to the ground.
+<<BR>>
+Luckily, it's only about a foot to the floor, so the drop doesn't hurt much.
+<<BR>>
+Still, you lie there for a moment, unmoving.
+<<BR>>
+<<do this.image('circle')>>
+"Quit being dramatic<<if !this.flag('nokid')>>, kid<<endif>>."
+<<BR>>
+They offer you a hand to help you up.
+<<BR Take their hand>>
+"You know, in tarot, The Hanged Man often represents wisdom. Or sacrifice."
+<<BR>>
+"Or clairvoyance."
+<<BR>>
+"...or selfishness, if reversed."
+
+[["What are you trying to say?"|this.goto('hanged3')]]
+[["What does that have to do with me?"|this.goto('hanged3')]]
+
+::hanged3
+"Oh - nothing, probably."
+
+"Even if you were the sort to put stock in card readings, you're not a card."
+<<BR>>
+"Anyway, let's at least get on the road before consulting your newfound divination and/or prophecy."
+
+They pass you their flashlight and walk ahead into the darkness.
+<<BR>>
+<<do this.image('blank')>>
+Now that you're right side up and not on the business end of an industrial strength flashlight, you can get a better look at your surroundings.
+
+[[Look around]]
+[[Look up]]
+[[Look back]]
+[[Look ahead]]
+
+::Look around
+<<do this.flag('around', true)>>
+You're in the woods. Deep in the woods, from what you can see.
+
+<<if !this.flag('up')>>[[Look up]]<<endif>>
+<<if !this.flag('back')>>[[Look back]]<<endif>>
+<<if !this.flag('ahead')>>[[Look ahead]]<<else>>[[Get in the car]]<<endif>>
+
+::Look back
+<<do this.flag('back', true)>>
+You look back to where you were suspended.
+<<BR>>
+Just a tree.
+<<BR>>
+Bit short, sparse on leaves, but not particularly different from any of the others you've seen.
+
+<<if !this.flag('around')>>[[Look around]]<<endif>>
+<<if !this.flag('up')>>[[Look up]]<<endif>>
+<<if !this.flag('ahead')>>[[Look ahead]]<<else>>[[Get in the car]]<<endif>>
+
+::Look up
+<<do this.flag('up', true)>>
+You look up at the sky.
+<<BR>>
+It's the middle of the night. You can see the moon, maybe three-quarters full.
+<<BR>>
+Whether due to clouds or light pollution, you're not sure, but can't see any stars.
+
+<<if !this.flag('around')>>[[Look around]]<<endif>>
+<<if !this.flag('back')>>[[Look back]]<<endif>>
+<<if !this.flag('ahead')>>[[Look ahead]]<<else>>[[Get in the car]]<<endif>>
+
+::Look ahead
+<<do this.flag('ahead', true)>>
+<<do this.image('circle')>>
+You see your apparent rescuer, still walking. A bit further ahead, you see a parked sedan.
+<<BR>>
+They reach for something in their pocket, and the car lights up.
+<<BR>>
+<<do this.image('blank')>>
+Clearly they're expecting you to follow, but seem content to lean against the vehicle for the time being.
+
+<<if !this.flag('around')>>[[Look around]]<<endif>>
+<<if !this.flag('up')>>[[Look up]]<<endif>>
+<<if !this.flag('back')>>[[Look back]]<<endif>>
+[[Get in the car]]
+
+::Get in the car
+You make your way over to the vehicle. Seeing you coming, your companion opens the door and takes the driver's seat.
+<<BR>>
+You sit down next to them, and they put it into gear.
+<<BR Look around>>
+It's nice. Not fancy, or particularly expensive-looking, but clean, organized, and well-kept.
+<<BR>>
+The kind of car that makes you feel if you'd had a snack with a bit of trash packaging, you'd put it in your pocket, or just hold onto it awkwardly, rather than let it touch any of the surfaces.
+<<BR>>
+You're suddenly very conscious of having fallen onto a dirt floor, and hope your driver doesn't mind if you've tracked some of it in.
+<<BR>>
+Then again, they didn't exactly break your fall.
+<<BR>>
+Your thoughts are interrupted as they grab a small black box from a compartment between the seats, and place it inside a slot on the dashboard.
+<<BR>>
+"Do you mind?"
+
+Without waiting for an answer, they press a couple buttons, and there's a soft crackle.
+<<BR>>
+Shortly after, the sound of music - something with lots of reverb and indistinct vocals.
+<<BR>>
+It's nice.
+<<BR>>
+This is nice, you think.
+<<BR>>
+It suddenly hits you how tired you are.
+<<BR Drift off>>
+<<do this.image('circle')>>
+"You're not welcome here, you know."
+<<BR Or not>>
+They take a hard left without bothering to signal.
+
+"I mean, I would hope you know that by now."
+<<BR>>
+"You may not be used to how things work here, but shouldn't take much to guess that knocking folks out and stringing them up in the woods isn't exactly a 'nice to meet you<<if !this.flag('nokid')>>, kid<<endif>>'."
+<<BR>>
+You'd figured as much.
+<<BR>>
+"Any ideas on who might've done this?"
+
+"Stepped on any toes? Broken any rules?"
+
+<<if this.flag('skipped-papers')>>[["I didn't fill out my papers."|this.goto('laugh-lied')]]<<endif>>
+<<if this.flag('lied-papers')>>[["I lied on my documentation."|this.goto('laugh-lied')]]<<endif>>
+[["I don't know."]]
+
+::laugh-lied
+They burst out laughing.
+<<BR>>
+"Damn. Hope you didn't make a typo too or they might hang you from the other end tomorrow night."
+<<BR>>
+"Heaven forbid you didn't get a witness signature or I might turn this car around and put you back up myself!"
+<<BR "So...">>
+"So no, I don't think anyone cares about your attendance papers<<if !this.flag('nokid')>>, kid<<endif>>."
+
+[["I don't know, then."|this.goto('"I don\'t know."')]]
+
+::"I don't know."
+"Hm, well, for your sake, I hope they consider their message sent."
+
+[[Continue|this.goto('car-questions')]]
+
+::car-questions
+<<do this.flag('car-asked', this.flag('car-asked') || 0)>>
+<<if Math.random() < 0.3>>They take another left.<<elseif Math.random() > 0.5>>They take a right, and swear at something under their breath.<<else>>They adjust their mirrors, and keep driving.<<endif>>
+
+<<if !this.flag('car-why')>>[["Why are you helping me?"|this.goto('car-why')]]<<endif>>
+<<if !this.flag('car-how')>>[["How did you find me?"|this.goto('car-how')]]<<endif>>
+<<if !this.flag('car-where')>>[["Where are we going?"|this.goto('car-where')]]<<endif>>
+<<if !this.flag('car-ok')>>[["Am I going to be okay?"|this.goto('car-okay')]]<<endif>>
+<<if this.flag('car-asked') > 1>>[[Stay silent]]<<endif>>
+
+::car-why
+<<do this.flag('car-why', true)>>
+<<do this.flag('car-asked', this.flag('car-asked')+1)>>
+They pause before answering.
+<<BR>>
+"Look, to be honest..."
+
+"I'd really rather not be."
+<<BR>>
+"I don't know you. In the grand scheme of things, you're just some <<if !this.flag('nokid')>>kid<<else>>person<<endif>>."
+<<BR>>
+"And on a more immediate scale, you're a remarkably dangerous one to be around."
+<<BR>>
+"But you're also a... let's call it a 'swing vote'."
+<<BR>>
+"Not exactly your typical juror."
+
+[[Continue|this.goto('car-questions')]]
+
+::car-how
+<<do this.flag('car-how', true)>>
+<<do this.flag('car-asked', this.flag('car-asked')+1)>>
+"Let's just say it's not my first rodeo."
+<<BR>>
+...
+<<BR>>
+"They string people up at rodeos, right?"
+<<BR>>
+"You know what - nevermind, not important."
+[[Continue|this.goto('car-questions')]]
+
+::car-where
+<<do this.flag('car-where', true)>>
+<<do this.flag('car-asked', this.flag('car-asked')+1)>>
+"Back to my place."
+<<BR>>
+"Far from perfect, but we don't have much in the way of alternatives."
+<<BR>>
+"It'll be better than the court-issued hotel, in any case."
+
+[[Continue|this.goto('car-questions')]]
+
+::car-okay
+<<do this.flag('car-ok', true)>>
+<<do this.flag('car-asked', this.flag('car-asked')+1)>>
+"Good question."
+<<BR>>
+...
+<<BR>>
+You don't think they're going to elaborate.
+
+[[Continue|this.goto('car-questions')]]
+
+::Stay silent
+<<do this.image('blank')>>
+You decide to stay silent for the rest of the car ride.
+<<BR>>
+It slightly-less-suddenly hits you how tired you are.
+<<BR Drift off>>
+<<do this.bg('blank')>>
+You think about how little you know about what's going on.
+<<BR>>
+And about how little control you seem to have over all of it.
+<<BR>>
+You think about how you could have simply called in sick for work.
+<<BR>>
+And about how much nicer it would have been to sleep in till noon.
+<<BR>>
+You think about how relieved you'd be to wake up, and for all of this to have been a bad dream.
+<<BR>>
+And about how probably no one would even notice if you were late to work as a result.
+<<BR BZZ>>
+<<do this.bg('bg1')>>
+You reach out to shut off your alarm, but find yourself falling.
+<<BR>>
+You continue falling.
+
+A split-second later, you're flat on the ground next to the couch.
+<<BR Couch??>>
+<<do this.bg('bg9')>>
+Remembering the events of last night, you look around what you assume to be the living quarters of your round-headed associate.
+<<BR>>
+You're lying on the floor of a well-furnished, if a bit cramped apartment.
+<<BR>>
+There are two doors, one slightly ajar, and another firmly shut and locked from this side.
+
+[[Investigate the locked door]]
+[[Investigate the open door]]
+
+::Investigate the locked door
+There are no less than four different locks. A deadbolt built into the knob, two sliding locks on the side, and one at the top.
+<<BR>>
+You're a little concerned at the level of paranoia on display, but on the other hand, this time you woke up safe and sound on a couch instead of strung up in the woods.
+
+[[Investigate the open door]]
+
+::Investigate the open door
+You cautiously approach the door, and poke it open further.
+<<BR>>
+It creaks noisily as you do so.
+<<BR>>
+<<do this.image('circle')>>
+"Well well well, look who's up."
+<<BR>>
+Your temporary roommate is sitting at a desk.
+<<BR>>
+Above the desk is a corkboard, pinned with various notes and pictures.
+<<BR>>
+No red strings, but maybe they just haven't gotten that far yet.
+<<BR>>
+"Sleep well<<if !this.flag('nokid')>>, kid<<endif>>?"
+
+[["Sure, I guess."|this.goto('go1')]]
+[["Not really."|this.goto('go1')]]
+
+::go1
+"Well, can't say I'm surprised, given the circumstances."
+<<BR>>
+"Anyway, I was gonna wake you in a few anyway, so good timing."
+<<BR>>
+"Time for us to get going<<if !this.flag('nokid')>>, kid<<endif>>!"
+
+<<if this.flag('scheduled-orientation')>>[["For orientation?"]]<<else>>[["For what?"]]<<endif>>
+
+::"For orientation?"
+"Orientation?"
+<<BR>>
+"What orientation?"
+<<BR "For the trial?">>
+"For the- I'm talking about the trial!"
+<<BR>>
+"When's this orientation of yours?"
+<<BR "Around noon.">>
+They sigh in exasperation.
+<<BR>>
+"Kid<<if this.flag('nokid')>> - sorry - listen<<endif>>, I don't know why you planned an orientation AFTER the hearing you're a part of, but I think I'm starting to see why you were so late yesterday."
+[[Continue|this.goto('go2')]]
+
+::"For what?"
+"For... the trial. The trial that you're a juror on?"
+<<BR>>
+They sigh in exasperation.
+<<BR>>
+"Didn't I tell you to get this sorted yesterday?"
+<<BR>>
+"No- doesn't matter. We don't have time."
+[[Continue|this.goto('go2')]]
+
+::go2
+"We gotta get going. C'mon."
+<<BR>>
+And with that, they're up and out of the room.
+<<BR Follow>>
+<<do this.bg('bg3')>>
+It's a short drive to the court house.
+<<BR>>
+They pull up in front of it, and unlock the car doors.
+<<BR>>
+"No press allowed during hearings."
+<<BR>>
+"Sorry<<if !this.flag('nokid')>> kid<<endif>>, you're on your own now."
+<<BR>>
+You're not sure what to say in response, so you simply thank them for the ride and make your way inside.
+<<BR>>
+<<do this.bg('bg5')>>
+Once inside, you're ushered to the courtroom by some large figures in dark suits.
+<<BR>>
+They direct you to a bench on the left, mostly filled with other people already.
+<<BR>>
+The other jurors, you assume.
+<<BR>>
+As you move to take your seat, you feel a little bit of hope you didn't want to acknowledge fall away.
+<<BR>>
+You thought that, on account of being one of them, the jury would be... normal.
+<<BR They are not>>
+You distract yourself by looking around the room.
+<<BR>>
+The layout is relatively familiar: juror's bench to one side, a raised judge's bench in front, and seats in the back for everyone else.
+<<BR>>
+The judge has yet to enter, but you see the same large figures escorting someone to the front of the seats.
+<<BR>>
+The defendant, you assume.
+<<BR>>
+Their clothes are plain, and they're wearing a heavy veil, dense enough that you can't see their face.
+<<BR>>
+A gavel rings out.
+<<BR>>
+<<do this.image('cross2')>>
+"Hello everyone."
+<<BR>>
+"I would like to thank you all in advance for your time and attention."
+<<BR>>
+"This would not be possible without each and every one of you."
+<<BR>>
+"I trust you all to uphold the standard of this court, just as I shall."
+<<BR>>
+"Now, would the assigned please state the details for all in attendance?"
+<<BR>>
+<<do this.image('blank')>>
+A sharp-looking figure seated next to the veiled defendant stands up.
+<<BR>>
+<<do this.image('triangle')>>
+"Of course, your honour."
+<<BR>>
+"I am, as always, happy to oblige the court."
+<<BR>>
+"The defendant has been charged with murder."
+<<BR>>
+<<do this.image('cross2')>>
+"And how do they plead?"
+<<BR>>
+<<do this.image('triangle')>>
+"Not guilty."
+<<BR>>
+<<do this.image('blank')>>
+There's a murmur of whispers from the crowd in response, quickly hushed as the judge continues.
+<<BR>>
+<<do this.image('cross2')>>
+"Thank you, that will be all."
+<<BR>>
+<<do this.image('blank')>>
+The figures to your left and to your right suddenly stand up.
+<<BR>>
+In fact, the whole jury appears to have left their seats.
+<<BR Stand up>>
+You get up along with them, and as you do, they start walking.
+<<BR Follow>>
+Taking the lead of your fellow jurors, you enter a non-descript door behind the benches.
+<<BR>>
+<<do this.bg('bg8')>>
+Inside is a small, round table surrounded by seats.
+<<BR>>
+In front of each seat is a small piece of paper and a pen.
+<<BR>>
+There's one for each juror.
+<<BR Take a seat>>
+This feels wrong.
+<<BR Examine the paper>>
+It is a plain white form; at the top is the word VERDICT, in all capital letters.
+<<BR>>
+Below that, is a box labelled GUILTY, and another labelled NOT GUILTY.
+<<BR>>
+The only other detail on the form is a series of small dotted lines, indicating where to fold it.
+<<BR "Has there been a mistake?">>
+You continue: "What happened to the trial?"
+<<BR>>
+The room was quiet before you spoke; now it is oppressively silent.
+<<BR>>
+The other jurors look at you, then at each other.
+<<BR>>
+Slowly, the gazes settle on the person seated to your right.
+<<BR>>
+Shortly after, they break the silence:
+<<BR>>
+<<do this.image('square')>>
+"What do you mean?"
+
+"This is the trial."
+<<BR>>
+<<do this.image('blank')>>
+One by one, the other jurors shrug off the tension and begin uncapping their pens.
+<<BR>>
+<<do this.image('square')>>
+"Is this your first time?"
+
+[["But what about the prosecution?"|this.flag('verdict-q','Prosecution');this.goto('verdict2')]]
+[["But what about the defense?"|this.flag('verdict-q','Defense');this.goto('verdict2')]]
+[["But what about the evidence?"|this.flag('verdict-q','Evidence');this.goto('verdict2')]]
+
+::verdict2
+"<<print this.flag('verdict-q')>>?"
+<<BR>>
+"Is... is that something they do in the trials where you come from?"
+<<BR>>
+<<do this.image('blank')>>
+You look around the room.
+
+Everyone else is already folding up their verdicts, and placing them in an envelope being passed around.
+<<BR>>
+<<do this.image('square')>>
+"Do... do you need help?"
+
+[["Yes"|this.goto('verdict-yes')]]
+[["No"|this.goto('verdict-no')]]
+
+::verdict-yes
+"Okay, so you see this box?"
+<<BR>>
+<<do this.flag('juror-shared', true)>>
+They point to the box labelled GUILTY on their sheet, where they have already marked a little X.
+<<BR>>
+"This means the criminal did the very bad thing everyone said they did."
+<<BR>>
+They point to the other.
+<<BR>>
+"And this means they didn't."
+<<BR>>
+They fold up their verdict, and place it in the envelope with the others.
+<<BR>>
+"Did that help?"
+
+[["Yes"|this.goto('verdict-yes2')]]
+[["No"|this.goto('verdict-no')]]
+
+::verdict-no
+"Oh, alright."
+<<BR>>
+They blink (wink?), clearly unsure of what to say next.
+<<BR>>
+"Well..."
+<<BR>>
+"What do you want, then?"
+
+[["To have a proper deliberation?"]]
+[["To hear what happened?"]]
+[["To go home."|this.goto('verdict3')]]
+
+::"To hear what happened?"
+They cock their head slightly to one side.
+
+"Oh, were you not listening?"
+<<BR>>
+"They said what happened at the start:"
+<<BR>>
+"Murder."
+
+[["No, that's not..."]]
+
+::"To have a proper deliberation?"
+"What's that?"
+<<BR "It's when the jurors discuss what their verdict will be.">>
+"Oh!"
+<<BR>>
+<<do this.flag('juror-shared', true)>>
+"Well, I chose GUILTY, how about you?"
+
+[["No, that's not..."]]
+[["Uh, GUILTY, I guess?"|this.goto('verdict-yes2')]]
+[["Uh, NOT GUILTY, I guess?"|this.goto('verdict3')]]
+[["I'm not sure."]]
+
+::"No, that's not..."
+You cut yourself off before finishing: "Nevermind."
+<<BR>>
+Seems like they've all made up their minds already.
+
+[[Continue|this.goto('verdict3')]]
+
+::"I'm not sure."
+"Oh."
+<<BR>>
+"You should fix that."
+[[Continue|this.goto('verdict3')]]
+
+::verdict-yes2
+"Great!"
+[[Continue|this.goto('verdict3')]]
+
+::verdict3
+"Then you can just fill out your sheet, and put it in here."
+
+They hand you the envelope.
+<<BR>>
+<<do this.image('blank')>>
+You're not sure you're going to be getting any more information to work with here.
+
+[[Check GUILTY|this.flag('verdict', 'guilty');this.goto('verdict4')]]
+[[Check NOT GUILTY|this.flag('verdict', 'not guilty');this.goto('verdict4')]]
+[[Check nothing|this.flag('verdict', 'abstain');this.goto('verdict4')]]
+
+::verdict4
+Having made your decision, you fold up the sheet according to the dotted lines, and place it in the envelope with the rest.
+<<BR>>
+You set the envelope down on the table in front of you.
+<<BR>>
+Seeing this, everyone else stares at the envelope lying on the table.
+<<BR>>
+They seem to be waiting for something more.
+<<BR>>
+Again, their eyes dance around in some purely visual debate as to who will take action.
+<<BR>>
+In the end, the juror to your right reaches out as if to grab it, but hesitates.
+<<BR>>
+After a few seconds, their arm outstretched, they apparently find new resolve, and pick it up.
+<<BR>>
+Then they seal it, stand up, and walk out of the room.
+<<BR>>
+The others get up and leave after them.
+<<BR Follow>>
+<<do this.bg('bg5')>>
+<<do this.image('cross2')>>
+"Has the jury reached their verdict?"
+<<BR>>
+The judge asks the question before you've even made it back to your seat.
+<<BR>>
+<<do this.image('square')>>
+The juror with the envelope stands up, and addresses the court.
+<<BR>>
+"We have."
+<<BR>>
+<<do this.image('cross2')>>
+"Could you please deliver it?"
+<<BR>>
+<<do this.image('blank')>>
+They take the envelope to the judge, set it in front of them, then retake their seat.
+<<BR>>
+The judge carefully tears open the seal, removes each folded sheet, and sets the envelope aside.
+<<BR>>
+One by one, they unfold the papers, inspect the contents, then place them next to the discarded envelope.
+<<BR>>
+Having finally gone through each, they raise their voice again:
+<<BR>>
+<<do this.image('cross2')>>
+<<if this.flag('verdict') === 'guilty'>><<do this.flag('juror-shared', true)>>"The jury has found the defendant guilty."<<else>>"The jury has failed to reach a conclusive decision."<<endif>>
+<<BR>>
+<<do this.image('blank')>>
+The announcement hangs in the air.
+<<BR>>
+<<do this.image('cross2')>>
+"Once again, I'd like to thank you all for your time."
+<<BR>>
+<<do this.image('blank')>>
+As they speak, the defendant and their escorts stand.
+<<BR>>
+<<do this.image('cross2')>>
+"It is only through your continued participation that this is possible."
+<<BR>>
+<<do this.image('blank')>>
+The defendant is led away, without so much as a word of acknowledgement from anyone in the room.
+<<BR>>
+<<do this.image('cross2')>>
+"The court is now adjourned."
+<<BR>>
+<<do this.image('blank')>>
+<<do this.bg('bg2')>>
+On saying this, the atmosphere of the room is completely changed:
+<<BR>>
+It feels as if everyone who was waiting on the edge of their seat suddenly relaxed all at once.
+<<BR>>
+People begin to leave their seats and mill about.
+<<BR Get up>>
+You stand up along with everyone else, unsure of what's expected of you next.
+<<BR Look around>>
+The defendant is long gone, but the judge and jury scatter into the crowd, making idle chatter along with everyone else.
+<<BR>>
+<<do this.image('square')>>
+As you look around, you make eye contact with the juror who spoke with you.
+<<BR>>
+<<if this.flag('verdict') === 'guilty'>>They give a little thumbs up, then continue on their way.<<else>>They quickly turn their head. A moment later they look back, and seeing that you're still looking in their direction, turn away again.<<endif>>
+<<BR>>
+<<do this.image('circle')>>
+Continuing to scan the room, you spot the reporter too; you're not sure when they entered, but they seem to already be deep in conversation.
+<<BR>>
+<<do this.image('triangle')>>
+Looks like they're interviewing to the lawyer(?) who was representing the defendant.
+<<BR>>
+<<do this.image('blank')>>
+No one seems particularly concerned with you at the moment.
+<<BR>>
+You realize you could probably strike up a conversation too, if you wanted.
+
+[[Continue|this.goto('crowd')]]
+
+::crowd
+<<do this.image('blank')>>
+<<if Math.random() < 0.3>>People continue to chatter.<<elseif Math.random() > 0.5>>A group bursts into laughter in response to a joke you didn't hear.<<else>>Someone you don't recognize <<if Math.random() > 0.5>>pats you on the back<<else>>gives you a nod<<endif>> just before taking their leave.<<endif>>
+
+<<if !this.flag('talk-juror')>>[[Talk to the juror]]<<endif>>
+<<if !this.flag('talk-lawyer')>>[[Talk to the lawyer]]<<endif>>
+<<if !this.flag('talk-reporter')>>[[Talk to the reporter]]<<endif>>
+<<if !this.flag('talk-judge')>>[[Talk to the judge]]<<else>>[[Meet the judge in their office]]<<endif>>
+
+::Talk to the juror
+<<do this.flag('talk-juror', true)>>
+You catch the comparatively talkative juror's gaze again, and wave at them.
+<<BR>>
+<<do this.image('square')>>
+They seem unsure whether to acknowledge it at first, but walk over.
+<<BR>>
+"H-hello!"
+<<BR>>
+They glance to an exit.
+[[Continue|this.goto('juror-questions')]]
+
+::juror-questions
+<<do this.flag('juror-chat', (this.flag('juror-chat') || 0) + 1)>>
+<<if this.flag('juror-chat') === 1>>"Lovely day for a trial."
+
+"Don't you think?"<<elseif this.flag('juror-chat') === 2>>"You didn't know the defendant, did you?"
+
+"No, I suppose you couldn't..."<<else>>"Really lovely day today."
+
+"Oh, sorry - did I say that already?"<<endif>>
+
+<<if this.flag('juror-chat') === 1 || this.flag('juror-chat') > 2>>[["Yeah."]]<<endif>>
+<<if !this.flag('juror-shared')>>[["What was your verdict?"]]<<endif>>
+<<if this.flag('juror-shared') && !this.flag('juror-why')>>[["Why did you vote GUILTY?"]]<<endif>>
+[["Goodbye."]]
+
+::"Yeah."
+<<if this.flag('juror-chat') !== 1>>
+"Ah."
+
+You get the impression they're being polite, but would very much like for this conversation to be over.
+
+[["Goodbye."]]
+<<else>>
+They nod, and brush a hand against their skirt absent-mindedly.
+
+[[Continue|this.goto('juror-questions')]]
+<<endif>>
+
+
+::"What was your verdict?"
+<<do this.flag('juror-shared', true)>>
+"Oh, GUILTY of course!"
+[[Continue|this.goto('juror-questions')]]
+
+::"Why did you vote GUILTY?"
+<<do this.flag('juror-why', true)>>
+They take a moment to look you directly in the eye before responding.
+<<BR>>
+<<if this.flag('verdict') === 'guilty'>>"Why did you?"<<else>>"Why didn't you?"<<endif>>
+<<BR>>
+Apparently the question is rhetorical, as they change the subject before waiting for an answer.
+[[Continue|this.goto('juror-questions')]]
+
+::"Goodbye."
+"Mm."
+<<BR>>
+<<do this.image('blank')>>
+They turn and walk away without another word.
+
+[[Continue|this.goto('crowd')]]
+
+::Talk to the lawyer
+<<do this.flag('talk-lawyer', true)>>
+You interrupt the interview<<if this.flag('talk-reporter')>> again<<endif>>.
+<<BR>>
+<<do this.image('triangle')>>
+"Well I don't know if I'd put it like that!"
+<<BR>>
+"However, if we were speaking off the record... Ah, but it seems we'll have to take a rain check on that."
+
+"Can I help you?"
+<<BR>>
+<<do this.image('blank')>>
+Your round-headed acquaintance seems a bit peeved at the interruption, but politely excuses themselves.
+<<BR>>
+<<do this.image('triangle')>>
+"I don't believe we've met."
+[[Continue|this.goto('lawyer-questions')]]
+
+::lawyer-questions
+<<if Math.random() < 0.3>>Someone interrupts them to say a quick farewell<<elseif Math.random() > 0.5>>They pull a device out of their pocket, and seem briefly distracted<<else>>They signal something to someone over your shoulder<<endif>> before they refocus on you.
+
+<<if !this.flag('who')>>[["Who are you?"]]<<endif>>
+<<if this.flag('who') && !this.flag('what')>>[["What do you do?"]]<<endif>>
+<<if !this.flag('explain')>>[["Can you explain what just happened?"]]<<endif>>
+[["Excuse me."]]
+
+::"Who are you?"
+<<do this.flag('who', true)>>
+They chuckle, as if amused at the idea that someone wouldn't already know the answer to that.
+<<BR>>
+"I'm the court's legal representation."
+<<BR>>
+"The best one, in fact."
+
+[[Continue|this.goto('lawyer-questions')]]
+
+::"What do you do?"
+<<do this.flag('what', true)>>
+They seem a bit annoyed at the question.
+<<BR>>
+"I represent the cases I am assigned to, naturally."
+
+[[Continue|this.goto('lawyer-questions')]]
+
+::"Can you explain what just happened?"
+<<do this.flag('explain', true)>>
+"Oh, did you miss the court proceedings?"
+<<BR>>
+"<<if this.flag('talk-reporter')>>Our mutual friend here will<<else>>I was just speaking with a friend here who will<<endif>> be writing up the details, I'm sure."
+<<BR>>
+"But if you'd like it straight from the source: <<if this.flag('verdict') === 'guilty'>>It was another stunning display from yours truly<<else>>It was a minor setback, nothing more<<endif>>."
+<<BR>>
+"I trust we'll have another within a week."
+
+[[Continue|this.goto('lawyer-questions')]]
+
+::"Excuse me."
+"Of course."
+<<BR>>
+<<do this.image('blank')>>
+They're already shaking hands with someone else, completely disengaged from your conversation.
+
+[[Continue|this.goto('crowd')]]
+
+::Talk to the reporter
+<<do this.flag('talk-reporter', true)>>
+You interrupt the interview<<if this.flag('talk-lawyer')>> again<<endif>>.
+<<BR>>
+<<do this.image('circle')>>
+"No of course not: I'd never want to imply anything like that."
+<<BR>>
+"Now, if you were to confirm otherwise... Hm, but maybe let's follow up on that in private."
+
+"Hey<<if !this.flag('nokid')>> kid<<endif>>, need a minute?"
+<<BR>>
+<<do this.image('blank')>>
+Someone else in the crowd immediately seizes the opportunity to pull the defendant's representation off towards some other introductions.
+<<BR>>
+<<do this.image('circle')>>
+"Great, needed a break from that goon anyway."
+[[Continue|this.goto('reporter-questions')]]
+
+::reporter-questions
+<<if Math.random() < 0.3>>They crack a couple knuckles.<<elseif Math.random() > 0.5>>They sigh.<<else>>They glance over at their interviewee, who's shaking some hands across the room.<<endif>>
+
+<<if !this.flag('who-was')>>[["Who was that?"]]<<endif>>
+<<if !this.flag('last-night')>>[["Any update on what happened last night?"]]<<endif>>
+<<if !this.flag('choice')>>[["Did I make the right choice?"]]<<elseif !this.flag('what-now')>>[["So what happens now?"]]<<endif>>
+[["See you around."]]
+
+::"Who was that?"
+<<do this.flag('who-was', true)>>
+"You mean the defendant's assigned?"
+<<BR>>
+"Officially, they're the court-employed legal representation."
+<<BR>>
+"Here to 'uphold the court's standards', of course."
+<<BR>>
+"Unofficially, they're here to look pretty and ease the conscience."
+<<BR>>
+"Beyond that, I've got a feeling that-"
+
+"Hm, you know what?"
+<<BR>>
+"Probably better if you don't know."
+
+[[Continue|this.goto('reporter-questions')]]
+
+::"Any update on what happened last night?"
+<<do this.flag('last-night', true)>>
+"Not really; some rumours here and there but nothing concrete."
+<<BR>>
+"Why, did you find anything?"
+<<BR "No.">>
+"Hm, well, keep me updated I guess."
+<<BR>>
+They take a second to look you up and down.
+<<BR>>
+"You worried about it?"
+
+[["Yes."|this.goto('"Aren\'t you?"')]]
+[["No."]]
+[["Aren't you?"]]
+
+::"Aren't you?"
+"Eh..."
+[[Continue|this.goto('"No."')]]
+
+::"No."
+They look off into the crowd.
+<<BR>>
+"Doubt anything more will come of it."
+<<BR>>
+"Trial's over: any message they'd want sent at this point wouldn't be for you."
+[[Continue|this.goto('reporter-questions')]]
+
+::"Did I make the right choice?"
+<<do this.flag('choice', true)>>
+"Maybe don't ask that in the middle of the court<<if !this.flag('nokid')>>, kid<<endif>>."
+
+[[Continue|this.goto('reporter-questions')]]
+
+::"So what happens now?"
+<<do this.flag('what-now', true)>>
+They shrug.
+<<BR>>
+"You go home."
+<<BR "How do I do that?">>
+They shrug again.
+<<BR>>
+"Not really my department."
+[[Continue|this.goto('reporter-questions')]]
+
+::"See you around."
+"Hey, two things before you go:"
+<<BR>>
+"One: You probably won't."
+<<BR>>
+"Two: You surprised me<<if !this.flag('nokid')>>, kid<<endif>>."
+<<BR>>
+"Okay actually three things:"
+<<BR>>
+"Three: Get yourself some rest. You look exhausted."
+<<BR>>
+They give a little wave, and wade off to re-capture their interviewee.
+
+[[Continue|this.goto('crowd')]]
+
+
+::Talk to the judge
+<<do this.flag('talk-judge', true)>>
+You approach the judge, who immediately disengages from a group when they see you.
+<<BR>>
+"Ah, just the person I wanted to see."
+<<BR>>
+"If you're all finished here, would you mind following me to my office?"
+<<BR>>
+Something about the way they pose the question implies that refusal is not an option.
+
+[["Okay"]]
+[["Actually, I'm not quite ready."]]
+
+::"Actually, I'm not quite ready."
+"Of course, of course; find me when you are."
+<<BR>>
+You nod politely, and they return to their previous conversation.
+
+[[Continue|this.goto('crowd')]]
+
+::Meet the judge in their office
+You spot the judge lingering by the exit.
+<<BR>>
+As you approach, they motion for you to follow.
+
+[[Continue|this.goto('"Okay"')]]
+
+::"Okay"
+<<do this.bg('bg12')>>
+They lead you out of the court, and through the halls.
+<<BR>>
+You keep an eye out for the defendant who left earlier, but don't recognize anyone as you walk.
+<<BR>>
+The two of you get onto a lift, and go up.
+<<BR>>
+It's a slow and silent ride.
+<<BR>>
+<<do this.bg('bg6')>>
+Finally, you enter on a large, dark, cubical space.
+<<BR>>
+The judge takes a seat at a desk, and motions at the chair opposite.
+<<BR Sit down>>
+<<do this.image('cross2')>>
+"Thank you for your co-operation today."
+<<BR>>
+"I suppose you'd like to be getting home now?"
+
+[["Actually, I had some questions."]]
+[["Yes, I would."]]
+
+::"Actually, I had some questions."
+"Oh, a curious one?"
+<<BR>>
+"Well, ask away if you'd like, but I can't promise I'll have answers."
+
+[[Continue|this.goto('judge-questions')]]
+
+::judge-questions
+<<if Math.random() < 0.3>>They look at you expectantly.<<elseif Math.random() > 0.5>>They gaze at you intently.<<else>>They hold eye contact, and wait for you to speak.<<endif>>
+
+
+<<if !this.flag('sham')>>[["Was this trial a sham?"]]<<endif>>
+<<if !this.flag('who-knocked')>>[["Who knocked me out last night?"]]<<endif>>
+<<if !this.flag('what-happen')>>[["What's going to happen to the defendant?"]]<<endif>>
+<<if this.flag('sham') && this.flag('who-knocked') && this.flag('what-happen')>>[["That's all, I suppose."|this.goto('"Yes, I would."')]]<<else>>[["Nevermind."|this.goto('"Yes, I would."')]]<<endif>>
+
+::"Was this trial a sham?"
+<<do this.flag('sham', true)>>
+They seem genuinely insulted.
+
+"Not at all."
+<<BR>>
+"Did we not seat the defendant before a jury of their peers?"
+<<BR>>
+"Was your decision not taken into account, along with the others?"
+<<BR>>
+"Were we not respectful of the verdict, upholding it to the highest standards of the court?"
+<<BR "But what was it... based on?">>
+"You're asking me what only you could know."
+<<BR>>
+"I am but a judge; you are a juror."
+<<BR>>
+"I would assume you came to your verdict of your own volition."
+<<BR>>
+They narrow their eye.
+<<BR>>
+"And if not, any compromise of integrity on behalf of the court would lay at your hands, not mine, or anyone else's."
+
+[[Continue|this.goto('judge-questions')]]
+
+
+::"Who knocked me out last night?"
+<<do this.flag('who-knocked',true)>>
+"I have absolutely no idea what you're talking about."
+<<BR>>
+"This sounds like a question that would be better posed to the proper authorities."
+<<BR>>
+"I simply preside over the trials of criminals: I don't suss them out myself."
+
+[[Continue|this.goto('judge-questions')]]
+
+
+::"What's going to happen to the defendant?"
+<<do this.flag('what-happen', true)>>
+<<if this.flag('verdict') === 'guilty'>>"You heard the verdict as well as I did."<<else>>"Nothing, for now."<<endif>>
+<<BR>>
+They seem content to leave it at that.
+
+[[Continue|this.goto('judge-questions')]]
+
+
+::"Yes, I would."
+"Then perhaps it's time we've ended this little visit of yours, yes?"
+<<BR>>
+<<do this.image('blank')>>
+They stand up, and hold out a hand.
+<<BR Take their hand>>
+<<do this.bg('blank')>>
+Before your arm reaches theirs, you are overwhelmed with a somewhat familiar rushing sensation.
+
+[[Continue|this.goto('falling-end')]]
+
+::falling-end
+<<do this.bg('bg1')>>
+You're falling.
+<<BR>>
+You continue falling.
+<<BR>>
+You continue falling.
+<<BR>>
+You continue falling.
+<<BR>>
+You continue falling. You wonder if you made the correct choice.
+[[Continue|this.goto('falling-end-2')]]
+[[Wake up|this.goto('end')]]
+
+::falling-end-2
+You continue falling. You wonder if you'd ever know the difference.
+[[Continue|this.goto('falling-end-3')]]
+[[Wake up|this.goto('end')]]
+
+::falling-end-3
+You continue falling. You wonder if you'll remember any this when you wake up.
+[[Wake up|this.goto('end')]]
+
+::end
+<<do this.bg('bg9')>>
+You were fast asleep, but even still, the buzz of your alarm cuts through your daze, scattering the quickly fading memories of last night's dreams.
+<<BR>>
+You consider hitting snooze.
+<<BR Reconsider>>
+You're not entirely sure why, but you find yourself feeling quite glad that you're awake.
+<<BR>>
+<<do this.bg('blank')>>
+And you don't want that to change.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+secret off-screen text to make options not show for a bit
+[[THE END|this.goto('start')]]

@@ -17,7 +17,7 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.(strand|glsl|vert|frag|gif|png|jpe?g|svg|xml|ogg)$/i,
+				test: /\.(strand|glsl|vert|frag|gif|png|jpe?g|svg|xml|ogg|mp3)$/i,
 				use: "file-loader"
 			},
 			{
