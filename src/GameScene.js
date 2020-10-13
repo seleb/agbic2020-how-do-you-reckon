@@ -160,19 +160,20 @@ class StrandE extends Strand {
 		if (this.musicTween) {
 			this.musicTween.stop();
 		}
-		const sound = this.scene.sound.play(sfx);
+		const sound = this.scene.sound.add(sfx);
 		this.musicTween = this.scene.add.tween({
-			targets: this.music,
-			volume: 0.5,
-			duration: 2000,
+			targets: this.scene.music,
+			volume: 0.25,
+			duration: 1000,
 			ease: 'Cubic.easeInOut',
 		});
-		sound.once('complete', function(music){
+		sound.play();
+		sound.once('complete', () => {
 			this.musicTween.stop();
 			this.musicTween = this.scene.add.tween({
-				targets: this.music,
+				targets: this.scene.music,
 				volume: 1,
-				duration: 2000,
+				duration: 1000,
 				ease: 'Cubic.easeInOut',
 			});
 		});
