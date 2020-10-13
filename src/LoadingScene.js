@@ -1,6 +1,6 @@
 import fontXml from '!!file-loader!./assets/font/font2.fnt';
 import Phaser from 'phaser';
-import casette from './assets/audio/casette.mp3';
+import cassette from './assets/audio/cassette.mp3';
 import music from './assets/audio/noise.mp3';
 import sfxLong from './assets/audio/sfx_long.ogg';
 import sfxShort1 from './assets/audio/sfx_short_1.ogg';
@@ -53,7 +53,7 @@ export default class LoadingScene extends Phaser.Scene {
 		this.load.audio('sfxShort2', [sfxShort2]);
 		this.load.audio('sfxShort3', [sfxShort3]);
 		this.load.audio('sfxLong', [sfxLong]);
-		this.load.audio('casette', [casette]);
+		this.load.audio('cassette', [cassette]);
 		Object.entries(images).forEach(([key, value]) => this.load.image(key, value));
 
 		this.load.on('progress', updateProgressbar);

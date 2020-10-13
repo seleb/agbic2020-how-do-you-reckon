@@ -33,7 +33,6 @@ Based on Famicase artwork by Jonah Davidson.
 
 ::new-game
 <<do this.bg('bg1')>>
-<<do this.audio('casette')>>
 You're falling.
 <<do this.flag('falling',1);>>
 [[Continue|this.goto('falling')]]
@@ -959,6 +958,7 @@ Your thoughts are interrupted as they grab a small black box from a compartment 
 
 Without waiting for an answer, they press a couple buttons, and there's a soft crackle.
 <<BR>>
+<<do this.audio('cassette')>>
 Shortly after, the sound of music - something with lots of reverb and indistinct vocals.
 <<BR>>
 It's nice.
