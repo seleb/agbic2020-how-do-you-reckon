@@ -1,9 +1,18 @@
 {
+  "name": "agbic2020-how-do-you-reckon",
+  "version": "1.0.0",
+  "description": "How Do You Reckon?",
   "main": "src/index.js",
   "scripts": {
     "build": "webpack --config webpack/prod.js ",
     "start": "webpack-dev-server --config webpack/base.js --open"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seleb/agbic2020-how-do-you-reckon.git"
+  },
+  "author": "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
+  "license": "UNLICENSED",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
