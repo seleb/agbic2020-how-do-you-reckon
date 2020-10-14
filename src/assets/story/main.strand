@@ -113,7 +113,7 @@ You're working an early shift today, and you'd be late even by your normal sched
 <<BR>>
 You hurry through your morning routine, skip breakfast, and rush out.
 <<BR>>
-You half speedwalk, half jog to the train station.
+You half speed-walk, half jog to the train station.
 [[Continue|this.goto('train-station')]]
 
 ::train-station
@@ -259,17 +259,23 @@ They give you a look, but you have a really difficult time focusing on what it c
 <<BR>>
 "We're not quite there yet, but it won't be much longer."
 <<BR>>
+<<do this.image('blank')>>
 You feel ill.
 <<BR>>
 <<do this.bg('bg1')>>
 You close your eyes and hope for it to pass.
-<<BR>>
-<<do this.bg('bg7')>>
 
 [[Continue|this.goto('form')]]
 
 ::form
-You don't recognize the stop.
+You try to take your mind off it.
+<<BR>>
+You focus on an excuse to use if someone asks why you're late.
+<<BR>>
+The train pulls to a stop.
+<<BR Open your eyes>>
+<<do this.bg('bg7')>>
+You don't recognize the station.
 <<BR>>
 Everyone gets off.
 
@@ -338,7 +344,7 @@ They gesture at a stack of forms, clearly intending for you to take one.
 <<do this.image('blank')>>
 You walk over and take a form.
 <<BR>>
-Giving it a quick look at the form, it seems pretty straightforward, so you grab a pen and start filling it out.
+Giving it a quick look, it seems pretty straightforward, so you grab a pen and start filling it out.
 <<BR>>
 Name (preferred):
 <<BR Fill it out>>
@@ -400,17 +406,18 @@ They give you a stranger than usual look, before something apparently clicks.
 
 "Ah, could I see that for a moment?"
 <<BR>>
+<<do this.audio('sfxFlip')>>
 They take the form from your hands without waiting for a response.
 <<BR>>
 "Ah yes, you're the one who missed orientation, huh?"
 
 "Hmm, we're already running late, so let's hurry this along."
 <<BR>>
-<<do this.audio('sfxScratch1')>>
+<<do this.audio('sfxScratch3')>>
 They start filling out your form, occasionally glancing up at you, then returning back to scratch down more answers.
 <<BR>>
 They pause for a second.
-
+<<BR>>
 "What's your favourite colour?"
 
 [["Red"|this.goto('believer1')]]
@@ -424,7 +431,7 @@ They pause for a second.
 ::believer1
 <<do this.audio('sfxScratch2')>>
 They nod, and fill out another box.
-
+<<BR>>
 You are 100% certain "favourite colour" was not one of the fields.
 <<BR>>
 "Do you consider yourself a believer?"
@@ -547,10 +554,20 @@ They pull out a notepad and click a pen expectantly.
 <<do this.audio('sfxClick')>>
 They click their pen again.
 
+<<if !this.flag('where-am-i')>>[["Where... am I?"]]<<endif>>
 <<if !this.flag('who-are-you')>>[["Who... are you?"]]<<endif>>
-<<if !this.flag('what-trial')>>[["What trial?"]]<<endif>>
+<<if !this.flag('what-trial')>>[["What... trial?"]]<<endif>>
 <<if !this.flag('kid')>>[["Why do you keep calling me 'kid'?"]]<<endif>>
 
+::"Where... am I?"
+<<do this.flag('where-am-i', true)>>
+"Arrivals."
+<<BR>>
+They point to a sign on the wall.
+<<BR>>
+It indeed has an arrow pointing down the stairs, labelled "Arrivals".
+
+[[Continue|this.goto('where-am-i')]]
 
 ::"Who... are you?"
 <<do this.flag('who-are-you', true)>>
@@ -616,7 +633,7 @@ They fumble in their pocket and flash a badge to prove their point, though you d
 [[Continue|this.goto('intro-questions')]]
 
 
-::"What trial?"
+::"What... trial?"
 <<do this.flag('what-trial', true)>>
 Their posture shifts.
 <<BR>>
@@ -626,7 +643,7 @@ Their posture shifts.
 <<BR>>
 You start to ask another question, but they cut you off.
 <<BR>>
-"Look, this is really not my department<<if !this.flag('nokid')>> kid<<endif>>."
+"This is really not my department<<if !this.flag('nokid')>> kid<<endif>>."
 <<BR>>
 "Tell you what: you see that door over there?"
 <<BR>>
@@ -634,7 +651,7 @@ They point out a plain-looking door towards the left side of the hall.
 <<BR>>
 "Take that door, head straight, look for someone who looks like they belong."
 <<BR>>
-"You're already running late, but if you want some answers, that's your best bet<<if !this.flag('nokid')>> kid<<endif>>.
+"You're already running late, but if you want some answers, that's your best bet<<if !this.flag('nokid')>> kid<<endif>>."
 <<BR>>
 "I'm late too, so I'll catch you later."
 <<BR>>
@@ -665,9 +682,10 @@ Before you can ponder the geometry of it further, you reach the end of the hall,
 <<do this.bg('bg3')>>
 The room is poorly lit, but you can roughly make out a single figure in the darkness.
 <<BR>>
+<<do this.audio('sfxClick')>>
+<<do this.image('cross')>>
 On seeing you enter, they flick a switch and an extra bulb flickers to life.
 <<BR>>
-<<do this.image('cross')>>
 They appear to be a clerk of some sort, surrounded by cabinets and stacks of file folders.
 <<BR>>
 Their suit is impressively ill-fitting: it somehow appears to be both too large and too small for their figure.
@@ -680,7 +698,7 @@ Their suit is impressively ill-fitting: it somehow appears to be both too large 
 
 <<if !this.flag('about-reporter')>>[["A reporter sent me here?"]]<<endif>>
 <<if !this.flag('about-trial')>>[["What's all this about a trial?"]]<<endif>>
-<<if this.flag('about-trial') || this.flag('about-home') && !this.flag('about-orientation')>>[["What orientation?"]]<<endif>>
+<<if (this.flag('about-trial') || this.flag('about-home')) && !this.flag('about-orientation')>>[["What orientation?"]]<<endif>>
 <<if this.flag('about-orientation') && !this.flag('about-orientation2')>>[["Can I get an orientation?"]]<<endif>>
 <<if !this.flag('about-home')>>[["Can you tell me how to get home?"]]<<endif>>
 [["Nevermind."]]
@@ -749,7 +767,7 @@ You wait for them to continue, but they seem to be doing the same.
 They open a drawer and start shuffling things around.
 <<BR>>
 <<do this.audio('sfxFlip')>>
-After a moment, they produce a clipboard and starting flipping through it.
+After a moment, they produce a clipboard and start to flip through it.
 <<BR>>
 "Looks like we're all booked up for today, but there is an opening tomorrow."
 <<BR>>
@@ -762,7 +780,7 @@ After a moment, they produce a clipboard and starting flipping through it.
 
 ::"Nevermind."
 <<do this.image('blank')>>
-You decide you've had enough of chatting with this bureaucrat and would be better off figuring things out on your own.
+You decide you've had enough of this and leave them to their filing.
 
 [[Continue|this.goto('devices')]]
 
@@ -771,7 +789,7 @@ You decide you've had enough of chatting with this bureaucrat and would be bette
 You decide to head back the way you came.
 <<BR>>
 <<do this.bg('bg4')>>
-One arduously long staircase later, you're back in the registration office.
+One arduously long staircase later, you're back in the arrivals office.
 <<BR>>
 You can see the train through the door windows, still idling in the station.
 <<BR Open the door>>
@@ -795,7 +813,7 @@ Back up the stairs...
 ::Head outside
 Deciding to follow the first instructions you were given, you make your way to the building's exit, and then head outside.
 <<BR>>
-You're half-expecting to see some sort of nightmare hell-scape, when you leave the doors, but it's surprisingly normal.
+You're half-expecting to see some sort of nightmare hell-scape when you open the doors, but it's surprisingly normal.
 <<BR>>
 If it weren't for the people, you could even confuse it for the downtown you're familiar with.
 <<BR>>
@@ -819,9 +837,9 @@ You didn't exactly get concrete directions, so you pick a direction and start wa
 	'The sound of hurried footsteps, directly behind you.',
 ][this.flag('walking')]>>
 
-<<if this.flag('walking') < 10>>[[Turn left|this.goto('walking-loop')]]
-[[Turn right|this.goto('walking-loop')]]
-[[Keep walking|this.goto('walking-loop')]]<<endif>>
+<<if this.flag('walking') < 10>><<if this.flag('walking') > 4>>[[Turn left|this.goto('walking-loop')]]
+[[Turn right|this.goto('walking-loop')]]<<endif>>
+[[Continue|this.goto('walking-loop')]]<<else>><<do this.audio('sfxSteps')>><<endif>>
 <<if this.flag('walking') > 5>>[[Start running]]<<endif>>
 
 ::Start running
@@ -853,7 +871,7 @@ You're upside down.
 <<BR Blink>>
 There's something tied tight around your right ankle, holding you up. You try to get a better look, but it's hard to see.
 <<BR Blink>>
-Everything around you is dark, but there's something bright shining in your face. On top of that, you can feel the blood rushing to your head.
+Everything around you is dark, but there's something bright shining in your face.
 <<BR Blink>>
 "How's it hanging<<if !this.flag('nokid')>>, kid<<endif>>?"
 <<BR Blink>>
@@ -870,6 +888,7 @@ They chuckle, and circle behind you.
 
 You try to twist and get a better view, but can't quite counter-balance and end up slowly spinning the opposite way.
 <<BR>>
+<<do this.audio('sfxSnap')>>
 "Watch your head."
 
 You barely have enough time to react before a sudden snap leaves you plummeting to the ground.
@@ -1181,6 +1200,7 @@ They sigh in exasperation.
 ::go2
 "We gotta get going. C'mon."
 <<BR>>
+<<do this.image('blank')>>
 And with that, they're up and out of the room.
 <<BR Follow>>
 <<do this.bg('bg3')>>
@@ -1188,10 +1208,12 @@ It's a short drive to the court house.
 <<BR>>
 They pull up in front of it, and unlock the car doors.
 <<BR>>
+<<do this.image('circle')>>
 "No press allowed during hearings."
 <<BR>>
 "Sorry<<if !this.flag('nokid')>> kid<<endif>>, you're on your own now."
 <<BR>>
+<<do this.image('blank')>>
 You're not sure what to say in response, so you simply thank them for the ride and make your way inside.
 <<BR>>
 <<do this.bg('bg5')>>
@@ -1221,13 +1243,13 @@ A gavel rings out.
 <<do this.image('cross2')>>
 "Hello everyone."
 <<BR>>
-"I would like to thank you all in advance for your time and attention."
+"I would like to thank you all in advance for your time, attendance, and attention."
 <<BR>>
 "This would not be possible without each and every one of you."
 <<BR>>
 "I trust you all to uphold the standard of this court, just as I shall."
 <<BR>>
-"Now, would the assigned please state the details for all in attendance?"
+"Now, would the assigned please state the details for all involved?"
 <<BR>>
 <<do this.image('blank')>>
 A sharp-looking figure seated next to the veiled defendant stands up.
@@ -1291,6 +1313,7 @@ Shortly after, they break the silence:
 "This is the trial."
 <<BR>>
 <<do this.image('blank')>>
+<<do this.audio('sfxClick')>>
 One by one, the other jurors shrug off the tension and begin uncapping their pens.
 <<BR>>
 <<do this.image('square')>>
@@ -1328,6 +1351,7 @@ They point to the other.
 <<BR>>
 "And this means they didn't."
 <<BR>>
+<<do this.audio('sfxFlip')>>
 They fold up their verdict, and place it in the envelope with the others.
 <<BR>>
 "Did that help?"
@@ -1402,7 +1426,7 @@ You're not sure you're going to be getting any more information to work with her
 [[Check nothing|this.flag('verdict', 'abstain');this.goto('verdict4')]]
 
 ::verdict4
-<<do this.audio('sfxScratch2')>>
+<<if this.flag('verdict') === 'abstain')>><<do this.audio('sfxFlip')>><<else>><<do this.audio('sfxScratch2')>><<endif>>
 Having made your decision, you fold up the sheet according to the dotted lines, and place it in the envelope with the rest.
 <<BR>>
 You set the envelope down on the table in front of you.
@@ -1487,7 +1511,7 @@ As you look around, you make eye contact with the juror who spoke with you.
 Continuing to scan the room, you spot the reporter too; you're not sure when they entered, but they seem to already be deep in conversation.
 <<BR>>
 <<do this.image('triangle')>>
-Looks like they're interviewing to the lawyer(?) who was representing the defendant.
+Looks like they're interviewing the lawyer(?) who was representing the defendant.
 <<BR>>
 <<do this.image('blank')>>
 No one seems particularly concerned with you at the moment.

@@ -13,6 +13,8 @@ import sfxScratch3 from './assets/audio/scratch3.mp3';
 import sfxShort1 from './assets/audio/short1.mp3';
 import sfxShort2 from './assets/audio/short2.mp3';
 import sfxShort3 from './assets/audio/short3.mp3';
+import sfxSnap from './assets/audio/snap.mp3';
+import sfxSteps from './assets/audio/steps.mp3';
 import sfxTrain from './assets/audio/train.mp3';
 import fontImg from './assets/font/font2_0.png';
 import * as images from './assets/images';
@@ -70,6 +72,8 @@ export default class LoadingScene extends Phaser.Scene {
 		this.load.audio('sfxNotification', [sfxNotification]);
 		this.load.audio('sfxFlip', [sfxFlip]);
 		this.load.audio('sfxGavel', [sfxGavel]);
+		this.load.audio('sfxSteps', [sfxSteps]);
+		this.load.audio('sfxSnap', [sfxSnap]);
 		Object.entries(images).forEach(([key, value]) => this.load.image(key, value));
 
 		this.load.on('progress', updateProgressbar);
