@@ -567,7 +567,7 @@ They point to a sign on the wall.
 <<BR>>
 It indeed has an arrow pointing down the stairs, labelled "Arrivals".
 
-[[Continue|this.goto('where-am-i')]]
+[[Continue|this.goto('intro-questions')]]
 
 ::"Who... are you?"
 <<do this.flag('who-are-you', true)>>
