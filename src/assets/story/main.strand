@@ -1426,7 +1426,7 @@ You're not sure you're going to be getting any more information to work with her
 [[Check nothing|this.flag('verdict', 'abstain');this.goto('verdict4')]]
 
 ::verdict4
-<<if this.flag('verdict') === 'abstain')>><<do this.audio('sfxFlip')>><<else>><<do this.audio('sfxScratch2')>><<endif>>
+<<if this.flag('verdict') === 'abstain'>><<do this.audio('sfxFlip')>><<else>><<do this.audio('sfxScratch2')>><<endif>>
 Having made your decision, you fold up the sheet according to the dotted lines, and place it in the envelope with the rest.
 <<BR>>
 You set the envelope down on the table in front of you.
