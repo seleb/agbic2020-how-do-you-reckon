@@ -45,6 +45,7 @@ You continue falling. <<if this.flag('falling') == 25>>You wonder whether lucid 
 
 ::Wake up
 <<do this.bg('bg9')>>
+<<do this.audio('sfxAlarm')>>
 You were half-awake already, but the buzz of your alarm cuts through your daze, scattering the quickly fading memories of last night's dreams.
 
 [[Snooze|this.goto('snooze-1')]]
@@ -55,6 +56,7 @@ You were half-awake already, but the buzz of your alarm cuts through your daze, 
 You hit snooze, and pull the covers up over your head. It's just five more minutes.
 <<BR BZZ>>
 <<do this.bg('bg9')>>
+<<do this.audio('sfxAlarm')>>
 The alarm goes off again.
 
 [[Snooze|this.goto('snooze-2')]]
@@ -67,12 +69,14 @@ You're not going back to sleep, you tell yourself as you bury your head back int
 You're just... getting ready. Getting ready to face the day.
 <<BR BZZ>>
 <<do this.bg('bg9')>>
+<<do this.audio('sfxAlarm')>>
 The alarm goes off again.
 
 [[Snooze|this.goto('snooze-3')]]
 [[Get up]]
 
 ::snooze-3
+<<do this.audio('sfxNotification')>>
 You go to hit the snooze again, but it only buzzes twice then stops.
 <<BR>>
 Just a notification; is someone messaging you?
@@ -173,6 +177,7 @@ No one has gotten on or off the car in front of you since it arrived.
 <<do this.bg('bg7')>>
 As if on cue, the doors close behind you.
 <<BR>>
+<<do this.audio('sfxTrain')>>
 The train car is almost empty. You could count the passengers on a single hand, yourself and the stranger who pushed through you included.
 
 [[Confront the rude stranger]]
@@ -337,12 +342,16 @@ Giving it a quick look at the form, it seems pretty straightforward, so you grab
 <<BR>>
 Name (preferred):
 <<BR Fill it out>>
+<<do this.audio('sfxScratch1')>>
 Age:
 <<BR Fill it out>>
+<<do this.audio('sfxScratch2')>>
 Date of birth:
 <<BR Fill it out>>
+<<do this.audio('sfxScratch3')>>
 Place of residence:
 <<BR Fill it out>>
+<<do this.audio('sfxScratch1')>>
 Affiliation:
 <<BR Uh>>
 You skip that one and make a mental note to come back.
@@ -356,6 +365,7 @@ Looking through the rest of the form, there's roughly half a page's worth of bla
 [[Hand it in without finishing]]
 
 ::Look for instructions
+<<do this.audio('sfxFlip')>>
 You flip the form over, scan the page for any fine print, give a cursory glance around the office space, but there doesn't seem to be anything that would hint at what you're supposed to be doing here.
 
 [[Ask for help]]
@@ -396,6 +406,7 @@ They take the form from your hands without waiting for a response.
 
 "Hmm, we're already running late, so let's hurry this along."
 <<BR>>
+<<do this.audio('sfxScratch1')>>
 They start filling out your form, occasionally glancing up at you, then returning back to scratch down more answers.
 <<BR>>
 They pause for a second.
@@ -411,6 +422,7 @@ They pause for a second.
 [["It depends"|this.goto('believer1')]]
 
 ::believer1
+<<do this.audio('sfxScratch2')>>
 They nod, and fill out another box.
 
 You are 100% certain "favourite colour" was not one of the fields.
@@ -431,6 +443,7 @@ They gesture around vaguely, as if to say "<<print this.flag('in')>>all this", b
 [["I don't know" (lie)|this.flag('lie','idk');this.goto('lie')]]
 
 ::lie
+<<do this.audio('sfxClick')>>
 They sigh, and click the pen twice.
 
 "Please don't lie on your official documentation."
@@ -453,6 +466,7 @@ You repeat your answer, and insist that you're not lying, honest.
 ::believer3
 They look at you for a long while without saying anything, then write something down and move on.
 <<BR>>
+<<do this.audio('sfxScratch3')>>
 They fill out a few more fields without any further questions and deposit the form in a folder.
 
 [[Continue|this.goto('form-done')]]
@@ -508,6 +522,7 @@ Their face is unsurprisingly nonsensical.
 <<BR>>
 "I won't keep you long though; care to give a quote before you're off?"
 <<BR "A quote?">>
+<<do this.audio('sfxClick')>>
 "Yeah."
 
 They pull out a notepad and click a pen expectantly.
@@ -529,6 +544,7 @@ They pull out a notepad and click a pen expectantly.
 [[Continue|this.goto('intro-questions')]]
 
 ::intro-questions
+<<do this.audio('sfxClick')>>
 They click their pen again.
 
 <<if !this.flag('who-are-you')>>[["Who... are you?"]]<<endif>>
@@ -732,6 +748,7 @@ You wait for them to continue, but they seem to be doing the same.
 <<do this.flag('scheduled-orientation', true)>>
 They open a drawer and start shuffling things around.
 <<BR>>
+<<do this.audio('sfxFlip')>>
 After a moment, they produce a clipboard and starting flipping through it.
 <<BR>>
 "Looks like we're all booked up for today, but there is an opening tomorrow."
@@ -1085,6 +1102,7 @@ You think about how relieved you'd be to wake up, and for all of this to have be
 And about how probably no one would even notice if you were late to work as a result.
 <<BR BZZ>>
 <<do this.bg('bg1')>>
+<<do this.audio('sfxAlarm')>>
 You reach out to shut off your alarm, but find yourself falling.
 <<BR>>
 You continue falling.
@@ -1197,6 +1215,7 @@ The defendant, you assume.
 <<BR>>
 Their clothes are plain, and they're wearing a heavy veil, dense enough that you can't see their face.
 <<BR>>
+<<do this.audio('sfxGavel')>>
 A gavel rings out.
 <<BR>>
 <<do this.image('cross2')>>
@@ -1383,6 +1402,7 @@ You're not sure you're going to be getting any more information to work with her
 [[Check nothing|this.flag('verdict', 'abstain');this.goto('verdict4')]]
 
 ::verdict4
+<<do this.audio('sfxScratch2')>>
 Having made your decision, you fold up the sheet according to the dotted lines, and place it in the envelope with the rest.
 <<BR>>
 You set the envelope down on the table in front of you.
@@ -1443,6 +1463,7 @@ As they speak, the defendant and their escorts stand.
 The defendant is led away, without so much as a word of acknowledgement from anyone in the room.
 <<BR>>
 <<do this.image('cross2')>>
+<<do this.audio('sfxGavel')>>
 "The court is now adjourned."
 <<BR>>
 <<do this.image('blank')>>
@@ -1863,6 +1884,7 @@ You continue falling. You wonder if you'll remember any this when you wake up.
 
 ::end
 <<do this.bg('bg9')>>
+<<do this.audio('sfxAlarm')>>
 You were fast asleep, but even still, the buzz of your alarm cuts through your daze, scattering the quickly fading memories of last night's dreams.
 <<BR>>
 You consider hitting snooze.

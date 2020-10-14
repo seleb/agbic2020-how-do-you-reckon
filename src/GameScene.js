@@ -306,7 +306,7 @@ export default class GameScene extends Phaser.Scene {
 						yOffset += c.height;
 						c.on('click', () => {
 							this.strand.eval(action);
-							this.sound.play('sfxLong', {
+							this.sound.play(`sfxShort${Math.floor(Math.random()*3)+1}`, {
 								detune: Math.random() * 200 + 100,
 							});
 						});
