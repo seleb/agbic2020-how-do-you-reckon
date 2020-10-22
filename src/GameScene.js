@@ -267,8 +267,9 @@ export default class GameScene extends Phaser.Scene {
 		this.input.keyboard.addKey('SPACE').on('down', skip);
 		this.input.keyboard.addKey('ENTER').on('down', skip);
 		var keyObj = this.input.keyboard.on('keydown', event => {
-			if (choices[event.key - 1]) {
-				choices[event.key - 1].emit('click');
+			const c = choices[event.key - 1];
+			if (c && c.enabled) {
+				c.emit('click');
 			} else if (parseInt(event.key, 10) <= 4) {
 				skip();
 			}
@@ -320,6 +321,9 @@ export default class GameScene extends Phaser.Scene {
 						delay: idx * (3 - Settings.speed) * 100,
 						duration: (3 - Settings.speed) * 300,
 						ease: 'Power2',
+						onComplete: () => {
+							c.enabled = true;
+						}
 					});
 				});
 				canSkip = false;

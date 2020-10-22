@@ -5,6 +5,7 @@ export default class Choice extends Phaser.GameObjects.DynamicBitmapText {
 	constructor(scene, text) {
 		super(scene, 0, 0, 'font', '', undefined, 0);
 		this.start = Date.now();
+		this.enabled = false;
 		let down = false;
 		const cNormal = 0xFFFFFF;
 		const cOver = 0xBBBBFF;
@@ -29,7 +30,7 @@ export default class Choice extends Phaser.GameObjects.DynamicBitmapText {
 			this.tint = cNormal;
 		});
 		this.on('pointerup', () => {
-			if (down) {
+			if (down && this.enabled) {
 				this.emit('click');
 			}
 		});
