@@ -292,35 +292,37 @@ export default class GameScene extends Phaser.Scene {
 					.join('')
 					.trim();
 				const options = compiledPassage.filter(({ name }) => name === 'action');
-				canSkip = true;
-				await this.eventText.setText(text);
-				canSkip = false;
-				let yOffset = 0;
 				this.choicesContainer.y = size.y - 35;
+				canSkip = true;
+				let yOffset = 0;
 				choices.push(
 					...options.map(({ value: { text, action } }, idx) => {
-						var c = new Choice(this, `${idx + 1}.${text}`);
+						const c = new Choice(this, `${idx + 1}.${text}`);
+						c.alpha = 0;
 						this.choicesContainer.add(c);
 						this.choicesContainer.y -= c.height;
 						c.setPosition(0, yOffset);
 						yOffset += c.height;
 						c.on('click', () => {
 							this.strand.eval(action);
-							this.sound.play(`sfxShort${Math.floor(Math.random()*3)+1}`, {
+							this.sound.play(`sfxShort${Math.floor(Math.random() * 3) + 1}`, {
 								detune: Math.random() * 200 + 100,
 							});
-						});
-						c.alpha = 0;
-						this.add.tween({
-							targets: c,
-							alpha: 1,
-							delay: idx * (3 - Settings.speed) * 50,
-							duration: (3 - Settings.speed) * 500,
-							ease: 'Power2',
 						});
 						return c;
 					})
 				);
+				await this.eventText.setText(text);
+				choices.forEach((c, idx) => {
+					this.add.tween({
+						targets: c,
+						alpha: 1,
+						delay: idx * (3 - Settings.speed) * 100,
+						duration: (3 - Settings.speed) * 300,
+						ease: 'Power2',
+					});
+				});
+				canSkip = false;
 			},
 		};
 
