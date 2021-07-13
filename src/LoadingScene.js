@@ -27,6 +27,7 @@ import story from './assets/story';
 export default class LoadingScene extends Phaser.Scene {
 	constructor() {
 		super({ key: 'loading' });
+		window.game.canvas.ariaHidden = true;
 	}
 
 	preload() {
@@ -50,6 +51,7 @@ export default class LoadingScene extends Phaser.Scene {
 
 		const progressbar = this.add.graphics();
 		const updateProgressbar = percent => {
+			window.a11y.progress(percent);
 			progressbar.clear();
 			progressbar.fillStyle(0xffffff, 1);
 			progressbar.fillRect(x, y, percent * width, height);
@@ -78,7 +80,9 @@ export default class LoadingScene extends Phaser.Scene {
 
 		this.load.on('progress', updateProgressbar);
 		this.load.once('complete', () => {
+			window.a11y.loaded();
 			import('./GameScene').then(scene => {
+				window.a11y.text('loaded');
 				console.log(scene.default);
 				this.scene.add('game', new scene.default(), true);
 				this.scene.remove(this.key);

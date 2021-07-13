@@ -270,6 +270,7 @@ export default class GameScene extends Phaser.Scene {
 			const c = choices[event.key - 1];
 			if (c && c.enabled) {
 				c.emit('click');
+				event.preventDefault();
 			} else if (parseInt(event.key, 10) <= 4) {
 				skip();
 			}
@@ -312,6 +313,11 @@ export default class GameScene extends Phaser.Scene {
 						});
 						return c;
 					})
+				);
+				window.a11y.update(
+					this.activePortrait.texture.key,
+					text,
+					options.map(({ value: { text } }, idx) => ({ label: text, action: () => choices[idx].emit('click')}))
 				);
 				await this.eventText.setText(text);
 				choices.forEach((c, idx) => {
