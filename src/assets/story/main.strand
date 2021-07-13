@@ -1932,5 +1932,5 @@ And you don't want that to change.
 
 
 
-secret off-screen text to make options not show for a bit
+<<print new Array(57).fill("\u0000").join('')>>
 [[THE END|this.goto('start')]]
