@@ -16,8 +16,6 @@ window.a11y = {
 		this.elOptions = document.createElement('ol');
 		this.elOptionsDescription = document.createElement('p');
 		this.elOptionsDescription.textContent = 'Press the number key of your option to continue';
-		this.elOptionsDescription.id = 'options-description';
-		this.elOptions.setAttribute('aria-describedby', 'options-description');
 		this.el.style.position = 'absolute';
 		this.el.style.top = 0;
 		this.el.style.left = 0;
@@ -28,13 +26,15 @@ window.a11y = {
 		this.elProgress.value = 0;
 		this.elImg.alt = '';
 		this.el.appendChild(this.elProgress);
+		this.el.appendChild(this.elOptionsDescription);
+		this.el.appendChild(this.elOptions);
 		this.el.appendChild(this.elImg);
 		this.el.appendChild(this.elText);
-		this.el.appendChild(this.elOptions);
-		this.el.appendChild(this.elOptionsDescription);
 		document.body.appendChild(this.el);
-		this.el.ariaLive = 'polite';
-		this.el.ariaAtomic = true;
+		this.elText.ariaLive = 'polite';
+		this.elText.ariaAtomic = true;
+		this.elText.ariaRelevant = 'text';
+		this.imageSeen = {};
 	},
 	progress(percent) {
 		if (percent === undefined) {
@@ -47,23 +47,30 @@ window.a11y = {
 		this.elProgress.remove();
 		this.text('loaded');
 	},
-	text(str) {
+	text(str, options) {
 		this.elText.innerHTML = '';
 		str.split('\n').map(i => this.sanitize(i)).filter(i => i).forEach(i => {
 			const p = document.createElement('p');
 			p.textContent = i;
 			this.elText.appendChild(p);
 		});
+		if (options) {
+			options.forEach((i, idx) => {
+				const p = document.createElement('p');
+				p.textContent = `${idx + 1}: ${this.sanitize(i.label)}.`;
+				this.elText.appendChild(p);
+			});
+		}
 	},
 	img(str) {
 		if (str === this.elImg.dataset.key) {
-			this.elImg.alt = '';
-			return;
+			return '';
 		}
-		delete imagesDescriptions[`${this.elImg.dataset.key}First`];
 		this.elImg.dataset.key = str;
-		str = imagesDescriptions[`${str}First`] || imagesDescriptions[str];
-		this.elImg.alt = str ? this.sanitize(str) : '';
+		const img = (this.imageSeen[str] ? imagesDescriptions[str] : imagesDescriptions[`${str}First`]) || imagesDescriptions[str] || '';
+		this.imageSeen[str] = true;
+		this.elImg.alt = imagesDescriptions[`${str}First`] || imagesDescriptions[str] || '';
+		return img;
 	},
 	options(options) {
 		this.elOptions.innerHTML = '';
@@ -78,18 +85,16 @@ window.a11y = {
 	},
 	update(image, text, options) {
 		this.busy();
-		this.el.ariaAtomic = true;
-		this.img(image);
-		this.text(text);
+		const img = this.img(image);
+		this.text(`${img}\n${text}\n${options.map((i, idx) => `${idx + 1}: ${this.sanitize(i.label)}.`).join('\n')}`);
 		this.options(options);
 		this.ready();
-		this.el.ariaAtomic = false;
 	},
 	busy() {
-		this.el.ariaBusy = true;
+		this.elText.ariaBusy = true;
 	},
 	ready(){
-		this.el.ariaBusy = false;
+		this.elText.ariaBusy = false;
 	},
 	sanitize(str) {
 		return str.replaceAll('\u0000','').replace(/\s+/g, ' ').trim();
